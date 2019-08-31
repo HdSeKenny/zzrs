@@ -1,0 +1,39 @@
+/* pages/user-details/user-details.wxss */
+.user-details {
+  background: #F8F9FB;
+  height: 100%;
+  font-size: 12px;
+}
+
+.user-details .avartar,
+.user-details .name,
+.user-details .phone,
+.user-details .gender {
+  padding: 5px 10px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee; 
+}
+
+.user-details .avartar {
+  height: 30px;
+}
+
+.user-details .avartar image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.user-details .right {
+  float: right;
+}
+
+.user-details .log-out {
+  position: fixed;
+  left: 38%;
+  bottom: 100px;
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  background: #EC5D29;
+}

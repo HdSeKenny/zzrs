@@ -1,0 +1,88 @@
+<view class="container detail-page">
+  <i-toast id="toast" />
+  <view class="good-detail">
+    <view class="image">
+      <swiper class='detail-swiper' autoplay='true' interval="3000" bindtap="bindDetailTap">
+        <swiper-item wx:for="{{good.swiperImgs}}" wx:key="{{index}}">
+          <image src="{{item}}" mode=""/>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="detail">
+      <view class="good-tag" wx:if="{{good.isGrabbing && good.orderno && good.onlookRecordNo}}">正在开抢</view>
+      <p class="brand-name">{{good.brandName}}</p>
+      <i-grid i-class="no-border"><i-grid-item i-class="detail-text">{{good.subtitle}}</i-grid-item></i-grid>
+      <view class="btn-row" wx:if="{{!good.orderno && !good.onlookRecordNo}}">
+        <i-button bind:click="handleClick" i-class="status-btn disabled" shape="circle" size="small" disabled>抢购结束</i-button>
+      </view>
+      <i-grid i-class="no-border" wx:if="{{!good.orderno && good.onlookRecordNo}}">
+        <i-button bind:click="handleClick" i-class="status-btn" shape="circle" size="small">本轮剩余时间</i-button>
+      </i-grid>
+      <view class="left-time" wx:if="{{!good.orderno && good.onlookRecordNo}}">
+        <p>
+          {{good.hours || '00'}}<span class="unit">时</span>
+          {{good.minutes || '00'}}<span class="unit">分</span>
+          {{good.seconds || '00'}}<span class="unit">秒</span>
+        </p>
+      </view>
+      <view class="params">
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            <span>商品数量：{{good.goodnum}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            <span>商品原价：{{good.purchaseprice}}</span>
+          </i-grid-item>
+        </i-grid>
+
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            <span>降价幅度：{{good.downprice}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            <span>红线价格：{{good.redlineprice}}</span>
+          </i-grid-item>
+        </i-grid>
+
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            <span>剩余数量：{{good.goodnum - good.lockgoodnum}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            <span>正在支付：{{good.lockgoodnum}}</span>
+          </i-grid-item>
+        </i-grid>
+
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            <span>围观人数：{{good.lookercount}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            <span>下轮价格：</span>
+          </i-grid-item>
+        </i-grid>
+
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            当前价格：<span class="price">￥{{good.currentprice}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            最低价格：<span class="price">￥{{good.minPrice}}</span>
+          </i-grid-item>
+        </i-grid>
+      </view>
+    </view>
+
+    <i-grid i-class="checkout">
+      <i-grid-item>
+        <i-button bind:click="handleCheckoutOriginalPrice" shape="circle" size="small" data-id="{{good.id}}">原价购买</i-button>
+      </i-grid-item>
+      <i-grid-item wx:if="{{!good.onlookRecordNo && good.orderno}}">
+        <i-button bind:click="handleCheckoutLookerPrice" shape="circle" size="small" data-id="{{good.id}}">1元围观</i-button>
+      </i-grid-item>
+            <i-grid-item wx:if="{{!good.orderno && good.onlookRecordNo}}">
+      <i-button bind:click="handleCheckoutLookerPrice" shape="circle" size="small" data-id="{{good.id}}">抢购</i-button></i-grid-item>
+    </i-grid>
+    
+  </view>
+</view>

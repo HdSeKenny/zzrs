@@ -1,0 +1,33 @@
+<view class='container'>
+  <view class='me'>
+    <view class='avatar-bg'>
+      <view bindtap='bindUserDetailsTap'>
+        <view>
+          <image class='avatar' src='{{userInfo.avatarUrl || "/public/images/qiangba_logo.png"}}'></image>
+        </view>
+        <!-- bindgetuserinfo="getUserInfo" -->
+        <p class="text" wx:if="{{!hasUserInfo}}"> 点击登陆 </p>
+        <p class="text" wx:else>{{userInfo.nickName}} </p>
+      </view>
+    </view>
+    <view class="menu">
+      <i-cell-group>
+        <i-cell i-class="menu-link-cell" url="/pages/address/address" is-link>
+          <image src="/public/images/bg_2.png"></image>
+        </i-cell>
+        <i-cell i-class="menu-link-cell" url="/pages/order-history/order-history" is-link>
+          <image src="/public/images/bg_2.png"></image>
+        </i-cell>
+        <i-cell i-class="menu-link-cell" url="/pages/contact/contact" is-link>
+          <image src="/public/images/bg_4.png"></image>
+        </i-cell>
+        <i-cell i-class="menu-link-cell" url="/pages/help-center/help-center" is-link>
+          <image src="/public/images/bg_5.png"></image>
+        </i-cell>
+        <i-cell i-class="menu-link-cell" bind:click="onShareAppMessage">
+          <image src="/public/images/bg_6.png"></image>
+        </i-cell>
+      </i-cell-group>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,94 @@
+.detail-page {
+  /* padding: 10px 15px; */
+}
+
+.good-detail {
+  color: #A2ABCC;
+}
+
+.good-detail .image {
+  text-align: center;
+}
+
+.good-detail image {
+  /* width: 100px;
+  height: 100px; */
+}
+
+.detail {
+  margin: 10px 16px;
+  padding: 20px 5px;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.detail .good-tag {
+  color:#FFFFFF;
+  background:#EC5D29;
+  padding:5px 15px;
+  margin:-20px 0 0px -8px;
+  width:45px;
+  font-size:11px;
+  position:relative;
+  z-index:1;
+  border-radius:5px;
+}
+
+.detail-text {
+  font-size: 11px;
+  padding: 10px !important;
+}
+
+.brand-name {
+  text-align: center;
+  display: block;
+}
+
+.detail button {
+  width:100px;
+  height:25px;
+  font-size: 11px;
+  background: #EC5D29;
+  line-height:25px;
+  margin: 10px auto;
+  border: none;
+}
+.detail button.disabled {
+  background: #999999;
+  color: #FFFFFF;
+}
+
+.left-time {
+  font-size: 13px;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.left-time .unit {
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.params {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.param-item {
+  padding: 5px 10px !important;
+}
+
+.checkout button {
+  width:150px;
+  height:30px;
+  font-size: 12px;
+  background: #A2ABCC;
+  line-height:30px;
+  /* margin: 10px auto; */
+  border: none;
+}
+.detail-swiper {
+  /* height: 110px; */
+}

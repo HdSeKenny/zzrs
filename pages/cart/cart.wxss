@@ -1,0 +1,41 @@
+.cart {
+  background: #eee;
+}
+
+.cart .left {
+  width: 16%;
+  float: left;
+}
+
+.cart .left image {
+  width: 50px;
+  height: 50px;
+}
+
+.cart .right {
+  width: 84%;
+  display: inline-block;
+}
+
+.cart .name-row {
+  height: 32px;
+}
+
+.cart .tag-btn {
+  font-size: 8px;
+  float: right;
+  color: #ffffff;
+  vertical-align:middle;
+  background: #EC5D29;
+}
+
+.cart .order-block {
+  padding: 10px;
+  margin-bottom: 5px;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.cart .looker-num {
+  float: right;
+}

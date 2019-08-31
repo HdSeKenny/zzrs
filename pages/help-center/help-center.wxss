@@ -1,0 +1,25 @@
+/* pages/help-center/help-center.wxss */
+.help {
+  background: #F8F9FB;
+  height: 100%;
+}
+.help .header-bar {
+  height: 100px;
+  background: #EC5D29;
+  text-align: center;
+  font-size: 13px;
+  padding: 30px;
+  color: #ffff;
+}
+
+.help .titles {
+  padding: 10px 20px;
+}
+
+.help .title-block {
+  font-size: 12px;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.02), 0 1px 1px rgba(0,0,0,0.02);
+}

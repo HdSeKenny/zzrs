@@ -1,0 +1,28 @@
+.avatar-bg {
+  height: 100px;
+  background: #EC5D29;
+  text-align: center;
+  font-size: 13px;
+  padding: 30px;
+  color: #ffff;
+}
+
+.avatar-bg .avatar {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.avatar-bg .text {
+  display: block;
+}
+
+.menu image {
+  width: 80px;
+  height: 25px;
+}
+
+.menu .menu-link-cell {
+  line-height: 0.4;
+}

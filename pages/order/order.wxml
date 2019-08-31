@@ -1,0 +1,36 @@
+<!--pages/order/order.wxml-->
+<view class="container order">
+  <view class="order-address">
+    <i-cell-group>
+      <span>收货人：{{address.name}}</span>
+      <i-cell is-link url="/pages/address/address?isOrder=true">
+        {{address.detail}}
+      </i-cell>
+    </i-cell-group>
+  </view>
+
+  <view class="order-detail">
+    <view class="left">
+      <image class="good-img" src="{{isLooker ? '/public/images/qiangba_logo.png' : good.imagePath}}" mode="cover"></image>
+    </view>
+    <view class='right'>
+      <view class='name'>
+        <span class="">{{good.name}}</span>
+      </view>
+          <view>
+      <span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span>
+      <span class="number">X 1</span>
+    </view>
+    </view>
+  </view>
+  <view class="options">
+    <view class='sale' wx:if="{{!isLooker}}">优惠券：<span class="price">￥ 0</span></view>
+    <view class='sum'>
+      共1件商品 小计：<span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span>
+    </view>
+  </view>
+  <view class="checkout">
+    <p class="sum">合计金额：<span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span></p>
+    <p class="pay-btn">微信支付</p>
+  </view>
+</view>

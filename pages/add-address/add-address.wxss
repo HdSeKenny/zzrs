@@ -1,0 +1,23 @@
+.add-address-page {
+  padding: 0 15px;  
+}
+
+.add-address-page .add-address-input {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.add-address-page .add-address-input.address {
+  min-height: 100px;
+}
+
+.add-address-page .add-address-input input,
+.add-address-page .add-address-input textarea {
+  border-bottom: 1px solid #eee;
+}
+
+.add-address-page .save-btn {
+  border: none;
+  color: #333;
+  background: #EC5D29;
+}

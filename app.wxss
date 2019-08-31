@@ -1,0 +1,30 @@
+/**app.wxss**/
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  justify-content: space-between;
+  /* padding: 40rpx 0; */
+  box-sizing: border-box;
+}
+
+.block {
+  display: block;
+}
+
+.price {
+  color: #EC5D29;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.lowest-row {
+  font-size: 10px;
+  color: #999999;
+}
+

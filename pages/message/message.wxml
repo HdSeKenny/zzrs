@@ -1,0 +1,26 @@
+<!--pages/message/message.wxml-->
+<view class='container'>
+  <i-toast id="toast" />
+  <view wx:if="{{hasUserInfo}}">
+    <view class='message-block' wx:for="{{messages}}" wx:key="{{item.id}}">
+      <view class='date'>
+        <text>{{item.transTime}}</text>
+      </view>
+      <view class='good'>
+        <view class='left'>
+          <image src="{{item.goodimg}}"></image>
+        </view>
+        <view class='right'>
+          <p class="block name-row">
+            {{item.goodname}} <button class="tag-btn">抢购结束</button>
+          </p>
+          <p class="block lowest-row"><span class="price">￥ {{item.minPrice}}</span>
+          </p>
+        </view>
+      </view>
+      <view class='message'>
+        <text>{{item.message}}</text>
+      </view>
+    </view>
+  </view>
+</view>

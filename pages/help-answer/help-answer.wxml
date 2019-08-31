@@ -1,0 +1,8 @@
+<!--pages/help-answer/help-answer.wxml-->
+<view class='answer'>
+  <view class='question'>
+    <p>{{question}}</p>
+  </view>
+  <view class='help-answer'>
+  </view>
+</view>

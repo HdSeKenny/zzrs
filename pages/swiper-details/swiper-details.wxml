@@ -1,0 +1,4 @@
+<!--pages/swiper-details/swiper-details.wxml-->
+<view class='container'>
+  <text>{{detailString}}</text>
+</view>

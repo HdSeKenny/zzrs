@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/detail/detail",
+    "pages/me/me",
+    "pages/cart/cart",
+    "pages/message/message",
+    "pages/order/order",
+    "pages/address/address",
+    "pages/swiper-details/swiper-details",
+    "pages/add-address/add-address",
+    "pages/contact/contact",
+    "pages/order-history/order-history",
+    "pages/help-center/help-center",
+    "pages/help-answer/help-answer",
+    "pages/user-details/user-details"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#EC5D29",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "public/images/homepage_out.png",
+        "selectedIconPath": "public/images/homepage_on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "public/images/cart_out.png",
+        "selectedIconPath": "public/images/cart_in.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "public/images/message_out.png",
+        "selectedIconPath": "public/images/message_on.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "public/images/my_out.png",
+        "selectedIconPath": "public/images/my_on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

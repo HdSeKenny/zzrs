@@ -1,0 +1,17 @@
+<view class="container address-page">
+  <i-toast id="toast" />
+  <view class='address-block' wx:for="{{addresses}}" wx:key="{{index}}">
+    <view class='left' bindtap="bindBackToOrderTap" data-item="{{item}}">
+      <p class='tag-name'>{{item.name}}</p>
+    </view>
+    <view class='middle' bindtap="bindBackToOrderTap" data-item="{{item}}">
+      <p class='name'>{{item.name}}<span class="phone">{{item.phone}}</span></p>
+      <text class='address'>{{item.detail}}</text>
+    </view>
+    <view class='right'>
+      <p class='edit' bindtap="bindAddAddressTap" data-id="{{item}}">编辑</p>
+    </view>
+    <view style="clear: both;"></view>
+  </view>
+  <button class='add-btn' bindtap="bindAddAddressTap">添加新地址</button>
+</view>

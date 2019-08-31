@@ -1,0 +1,18 @@
+<view class='container cart'>
+  <i-toast id="toast" />
+  <view wx:if="{{hasUserInfo}}">
+    <view class='order-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item.skuid}}">
+      <view class='left'>
+        <image src="{{item.goodimg}}"></image>
+      </view>
+      <view class='right'>
+        <p class="block name-row">
+          {{item.goodname}} <button class="tag-btn">正在开枪</button>
+        </p>
+        <p class="block lowest-row">最低价格：<span class="price">￥ {{item.minPrice}}</span>
+          <span class="looker-num">围观人数：{{item.lookercount}}</span>
+        </p>
+      </view>
+    </view>
+  </view>
+</view>

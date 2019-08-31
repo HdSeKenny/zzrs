@@ -1,0 +1,64 @@
+/* pages/address/address.wxss */
+.address-page {
+  padding: 0;
+  font-size: 12px;
+}
+
+.address-block {
+  margin-bottom: 8px;
+  padding: 0 10px;
+}
+
+.address-block .left {
+  width: 35px;
+  height: 35px;
+  float: left;
+  color: #ffff;
+  background: #999999;
+  border-radius: 50%; 
+}
+
+.address-block .left .tag-name {
+  line-height: 34px;
+  margin-left: 5px;
+}
+
+.address-block .middle {
+  margin-left: 10px;
+  width: 70%;
+  float: left;
+}
+
+.address-block .name {
+  font-weight: 600;
+  display: block;
+}
+
+.address-block .name .phone {
+  margin-left: 20px;
+  color: gray;
+}
+
+.address-block .address {
+  display: block;
+}
+
+.address-block .right {
+  width: 15%;
+  float: right;
+  line-height:30px;
+  border-left:1px solid #eee;
+  text-align:center;
+}
+
+.address-block .edit:hover {
+  cursor: pointer;
+}
+
+.address-page .add-btn {
+  position: fixed;
+  bottom: 0;
+  border: none;
+  font-size: 13px;
+  width: 100%;
+}

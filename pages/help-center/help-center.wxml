@@ -1,0 +1,10 @@
+<!--pages/help-center/help-center.wxml-->
+<view class='help'>
+  <view class='header-bar'>
+  </view>
+  <view class='titles'>
+    <view class='title-block' wx:for="{{titles}}" wx:key="{{index}}" bindtap="bindAnswerTap" data-id='{{item}}'>
+      <p>{{item}}</p>
+    </view>
+  </view>
+</view>

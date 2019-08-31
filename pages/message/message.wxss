@@ -1,0 +1,54 @@
+/* pages/message/message.wxss */
+.message-block {
+  font-size: 13px;
+  margin: 5px;
+  border: 1px solid #eee;
+}
+
+.message-block .date {
+  text-align: right;
+  font-size: 11px;
+  color: #999999;
+  border-bottom: 1px solid #eee; 
+}
+
+.message-block .good {
+  padding: 10px;
+}
+
+.message-block .left {
+  width: 16%;
+  float: left;  
+}
+
+.message-block .left image {
+  width: 50px;
+  height: 50px;
+}
+
+.message-block .right {
+  width: 84%;
+  height: 50px;
+  display: inline-block;
+}
+
+.message-block .name-row {
+  font-size: 12px;
+  height: 30px;
+}
+
+.message-block .tag-btn {
+  font-size: 9px;
+  margin-top: 10px;
+  float: right;
+  color: #ffffff;
+  vertical-align:middle;
+  background: #EC5D29;
+}
+
+.message-block .message {
+  padding: 5px;
+  font-size: 11px;
+  color: #999999;
+  border-top: 1px solid #eee; 
+}
