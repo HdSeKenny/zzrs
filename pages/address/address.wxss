@@ -13,6 +13,7 @@
   width: 35px;
   height: 35px;
   float: left;
+  text-align: center;
   color: #ffff;
   background: #999999;
   border-radius: 50%; 
@@ -20,7 +21,8 @@
 
 .address-block .left .tag-name {
   line-height: 34px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
+  text-align: center;
 }
 
 .address-block .middle {

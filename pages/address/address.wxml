@@ -2,7 +2,7 @@
   <i-toast id="toast" />
   <view class='address-block' wx:for="{{addresses}}" wx:key="{{index}}">
     <view class='left' bindtap="bindBackToOrderTap" data-item="{{item}}">
-      <image src="item.avatar"></image>
+      <p class="tag-name">{{item.tagName}}</p>
     </view>
     <view class='middle' bindtap="bindBackToOrderTap" data-item="{{item}}">
       <p class='name'>{{item.name}}<span class="phone">{{item.phone}}</span></p>

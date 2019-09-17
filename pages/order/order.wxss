@@ -19,8 +19,20 @@
 
 .order-address {
   background: #ffffff;
-  padding: 10px 0 10px 15px;
+  padding: 10px 15px;
   min-height: 50px;
+}
+
+.order-address .phone {
+  float: right;
+}
+
+.order-address .bold {
+  font-weight: 600;
+}
+
+.order-address .address-cell {
+  padding: 10px 0;
 }
 
 .order-detail {

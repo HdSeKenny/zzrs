@@ -22,7 +22,7 @@ Page({
     })
 
     UserService.findBizUserContactByUser({
-      pageSize: 1,
+      pageSize: 10,
       pageNum: 1
     }).then((data) => {
       if (!app.globalData.userInfo) {
@@ -38,10 +38,12 @@ Page({
           isFromOrder: true
         });
       }
-      console.log(data)
-      this.setData({
-        addresses: data.records || []
+
+      const addresses = (data.records || []).map((record) => {
+        record.tagName = record.name.substring(0, 1)
+        return record
       })
+      this.setData({ addresses })
     })
   },
 

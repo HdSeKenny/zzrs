@@ -3,9 +3,12 @@
   <i-toast id="toast" />
   <view class="order-address">
     <i-cell-group>
-      <span>收货人：{{address.name}}</span>
-      <i-cell is-link url="/pages/address/address?isOrder=true">
-        {{address.detail}}
+      <span>收货人：
+        <span class="bold">{{address.name}}</span>
+        <span class="phone bold">{{address.phone}}</span>
+      </span>
+      <i-cell is-link url="/pages/address/address?isOrder=true" i-class="address-cell">
+        收货地址：<span class="bold">{{address.address}}</span>
       </i-cell>
     </i-cell-group>
   </view>
