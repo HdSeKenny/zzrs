@@ -1,5 +1,6 @@
 <!--pages/order/order.wxml-->
 <view class="container order">
+  <i-toast id="toast" />
   <view class="order-address">
     <i-cell-group>
       <span>收货人：{{address.name}}</span>
@@ -11,14 +12,14 @@
 
   <view class="order-detail">
     <view class="left">
-      <image class="good-img" src="{{isLooker ? '/public/images/qiangba_logo.png' : good.imagePath}}" mode="cover"></image>
+      <image class="good-img" src="{{isLooker ? '/public/images/qiangba_logo.png' : good.goodimg}}" mode="cover"></image>
     </view>
     <view class='right'>
       <view class='name'>
-        <span class="">{{good.name}}</span>
+        <span class="">{{good.goodname}}</span>
       </view>
           <view>
-      <span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span>
+      <span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span>
       <span class="number">X 1</span>
     </view>
     </view>
@@ -26,11 +27,11 @@
   <view class="options">
     <view class='sale' wx:if="{{!isLooker}}">优惠券：<span class="price">￥ 0</span></view>
     <view class='sum'>
-      共1件商品 小计：<span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span>
+      共1件商品 小计：<span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span>
     </view>
   </view>
   <view class="checkout">
-    <p class="sum">合计金额：<span class="price">￥{{isLooker ? 0 : good.purchasePrice}}</span></p>
-    <p class="pay-btn">微信支付</p>
+    <p class="sum">合计金额：<span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span></p>
+    <p class="pay-btn" bindtap="onPayOrder">微信支付</p>
   </view>
 </view>

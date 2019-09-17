@@ -14,14 +14,16 @@
     "pages/order-history/order-history",
     "pages/help-center/help-center",
     "pages/help-answer/help-answer",
-    "pages/user-details/user-details"
+    "pages/user-details/user-details",
+    "pages/authorize/authorize",
+    "pages/home/home"
   ],
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#EC5D29",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "iconPath": "public/images/homepage_out.png",
         "selectedIconPath": "public/images/homepage_on.png",
         "text": "首页"

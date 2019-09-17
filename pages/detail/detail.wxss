@@ -1,5 +1,5 @@
 .detail-page {
-  /* padding: 10px 15px; */
+  
 }
 
 .good-detail {
@@ -7,17 +7,16 @@
 }
 
 .good-detail .image {
-  text-align: center;
+  /* text-align: center; */
 }
 
-.good-detail image {
-  /* width: 100px;
-  height: 100px; */
+.slide-image {
+  width: 100%;
 }
 
 .detail {
-  margin: 10px 16px;
-  padding: 20px 5px;
+  margin: 10px 30px;
+  padding: 20px 10px;
   border: 1px solid #eee;
   box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
 }
@@ -36,12 +35,14 @@
 
 .detail-text {
   font-size: 11px;
+  text-align: center;
   padding: 10px !important;
 }
 
 .brand-name {
   text-align: center;
   display: block;
+  font-weight: 600;
 }
 
 .detail button {
@@ -77,7 +78,7 @@
 }
 
 .param-item {
-  padding: 5px 10px !important;
+  padding: 2px 10px !important;
 }
 
 .checkout button {

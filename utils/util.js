@@ -36,7 +36,12 @@ const Toast = {
   }
 }
 
+const keepDecimalSpaces = (value, num) => {
+  return Math.round(value * (Math.pow(10, num))) / (Math.pow(10, num))
+}
+
 module.exports = {
   formatTime,
-  Toast
+  Toast,
+  keepDecimalSpaces
 }

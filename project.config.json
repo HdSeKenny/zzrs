@@ -9,12 +9,14 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wxf9b8c16897bbea10",
-	"projectname": "JoyfulColors",
+	"appid": "wx749d4375ddd97232",
+	"projectname": "猴淘购",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

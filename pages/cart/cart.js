@@ -1,5 +1,5 @@
 const { Toast } = require('../../utils/util.js')
-const { GoodService } = require('../../services/index')
+const { GoodService } = require('../../services/good')
 const app = getApp()
 
 Page({

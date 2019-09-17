@@ -1,16 +1,26 @@
-const { Toast } = require('../../utils/util.js')
-const { GoodService } = require('../../services/index')
+const { Toast, keepDecimalSpaces } = require('../../utils/util.js')
+const GoodService = require('../../services/good')
 const app = getApp()
 
 Page({
   data: {
     good: null,
-    hasUserInfo: true
+    hasUserInfo: true,
+    indicatorDots: false,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000
+  },
+  methods: {
+    keepPriceDecimal(value, num) {
+      return keepDecimalSpaces(value, num);
+    }
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '详细' })
     if (options) {
       GoodService.getGoodDetail(options).then((data) => {
+        console.log(data)
         this.findGoodOnlook(options, data)
       })
       .catch(err => {
@@ -46,7 +56,7 @@ Page({
         const now = new Date().getTime();
         const tmp = deadline - now;
         newGood.isGrabbing = tmp <= 0;
-
+        console.log('newGood', newGood)
         this.setData({ good: newGood }, () => {
           if (!newGood.isGrabbing) {
             this.calculateCountDownTime()
@@ -86,4 +96,5 @@ Page({
       url: `../swiper-details/swiper-details?detail=${this.data.good.detail}`
     })
   },
+
 })

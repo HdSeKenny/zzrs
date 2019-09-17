@@ -1,16 +1,17 @@
-<view class="container detail-page">
+<view class="container detail-page">  
   <i-toast id="toast" />
   <view class="good-detail">
-    <view class="image">
-      <swiper class='detail-swiper' autoplay='true' interval="3000" bindtap="bindDetailTap">
-        <swiper-item wx:for="{{good.swiperImgs}}" wx:key="{{index}}">
-          <image src="{{item}}" mode=""/>
+    <swiper indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{good.swiperImgs}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
         </swiper-item>
-      </swiper>
-    </view>
+      </block>
+    </swiper>
     <view class="detail">
       <view class="good-tag" wx:if="{{good.isGrabbing && good.orderno && good.onlookRecordNo}}">正在开抢</view>
-      <p class="brand-name">{{good.brandName}}</p>
+      <p class="brand-name">{{good.name}}</p>
       <i-grid i-class="no-border"><i-grid-item i-class="detail-text">{{good.subtitle}}</i-grid-item></i-grid>
       <view class="btn-row" wx:if="{{!good.orderno && !good.onlookRecordNo}}">
         <i-button bind:click="handleClick" i-class="status-btn disabled" shape="circle" size="small" disabled>抢购结束</i-button>
@@ -28,22 +29,34 @@
       <view class="params">
         <i-grid>
           <i-grid-item i-class="param-item">
-            <span>商品数量：{{good.goodnum}}</span>
+            当前价格：<span class="price">￥{{good.currentprice}}</span>
           </i-grid-item>
           <i-grid-item i-class="param-item">
-            <span>商品原价：{{good.purchaseprice}}</span>
+            最低价格：<span class="price">￥{{good.minPrice}}</span>
+          </i-grid-item>
+        </i-grid>
+        
+        <i-grid>
+          <i-grid-item i-class="param-item">
+            <span>降价幅度：￥{{good.downprice}}</span>
+          </i-grid-item>
+          <i-grid-item i-class="param-item">
+            <span>下轮价格：￥{{good.currentprice - good.downprice}}</span>
           </i-grid-item>
         </i-grid>
 
         <i-grid>
+ 
           <i-grid-item i-class="param-item">
-            <span>降价幅度：{{good.downprice}}</span>
+            <span>商品原价：{{good.purchasePrice}}</span>
           </i-grid-item>
+
           <i-grid-item i-class="param-item">
             <span>红线价格：{{good.redlineprice}}</span>
           </i-grid-item>
         </i-grid>
 
+  
         <i-grid>
           <i-grid-item i-class="param-item">
             <span>剩余数量：{{good.goodnum - good.lockgoodnum}}</span>
@@ -54,22 +67,16 @@
         </i-grid>
 
         <i-grid>
+                 <i-grid-item i-class="param-item">
+            <span>商品数量：{{good.goodnum}}</span>
+          </i-grid-item>
           <i-grid-item i-class="param-item">
             <span>围观人数：{{good.lookercount}}</span>
           </i-grid-item>
-          <i-grid-item i-class="param-item">
-            <span>下轮价格：</span>
-          </i-grid-item>
+ 
         </i-grid>
 
-        <i-grid>
-          <i-grid-item i-class="param-item">
-            当前价格：<span class="price">￥{{good.currentprice}}</span>
-          </i-grid-item>
-          <i-grid-item i-class="param-item">
-            最低价格：<span class="price">￥{{good.minPrice}}</span>
-          </i-grid-item>
-        </i-grid>
+
       </view>
     </view>
 

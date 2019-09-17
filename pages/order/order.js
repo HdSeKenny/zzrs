@@ -1,9 +1,11 @@
-// pages/order/order.js
+const GoodService = require('../../services/good')
+const UserService = require('../../services/user')
+const { Toast } = require('../../utils/util.js')
+
+const app = getApp()
+
 Page({
 
-  /**
-   * Page initial data
-   */
   data: {
     good: null,
     address: null
@@ -13,27 +15,44 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    console.log(options)
-    wx.request({
-      url: "https://www.cnqiangba.com/goodsku/findGoodSkuDetail",
-      method: 'POST',
-      data: {
-        id: options.id
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: (res) => {
-        console.log(res.data.data)
-        this.setData({
-          good: res.data.data,
-          isLooker: options.isLooker === '1'
-        })
-      },
-      fail: function (err) {
-        console.log(err)
-      }
+    wx.setNavigationBarTitle({
+      title: '订单支付'
     })
+    const { id, isLooker } = options
+    Promise.all([
+      GoodService.findGoodOnlook({ id }),
+      UserService.getUserDefaultAddress()
+    ]).then((data) => {
+      this.setData({
+        good: data[0],
+        address: data[1],
+        isLooker: isLooker === '1'
+      })
+    })
+
+    // UserService.getUserDefaultAddress().then((data) => {
+    //   console.log('user address', data)
+    // })
+    // wx.request({
+    //   url: "https://www.cnqiangba.com/goodsku/findGoodSkuDetail",
+    //   method: 'POST',
+    //   data: {
+    //     id: options.id
+    //   },
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded"
+    //   },
+    //   success: (res) => {
+    //     console.log(res.data.data)
+    //     this.setData({
+    //       good: res.data.data,
+    //       isLooker: options.isLooker === '1'
+    //     })
+    //   },
+    //   fail: function (err) {
+    //     console.log(err)
+    //   }
+    // })
   },
 
   /**
@@ -83,5 +102,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onPayOrder: function () {
+    console.log(this.data.good)
+    console.log(app.globalData)
+    if (!this.data.address) {
+      Toast.warning('请填写收货地址！')
+    }
   }
 })

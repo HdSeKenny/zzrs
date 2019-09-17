@@ -1,5 +1,5 @@
 const { Toast } = require('../../utils/util.js')
-const { UserService } = require('../../services/index')
+const { UserService } = require('../../services/user')
 const app = getApp()
 
 Page({

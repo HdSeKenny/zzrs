@@ -1,4 +1,6 @@
-// pages/add-address/add-address.js
+const UserService = require('../../services/user')
+const app = getApp()
+
 Page({
 
   /**
@@ -10,7 +12,9 @@ Page({
       name: '',
       phone: null,
       district: '',
-      detail: ''
+      city: '',
+      detail: '',
+      defaultflag: 1
     },
     isAddAddress: false
   },
@@ -23,6 +27,8 @@ Page({
     wx.setNavigationBarTitle({
       title: hasOptions ? '修改地址' : '增加地址'
     })
+
+    
     if (Object.keys(options).length) {
       const { id, phone, name, district, detail } = options
       this.setData({
@@ -127,7 +133,22 @@ Page({
       prevAdresses[currentIndex] = currentAddress
     }
     
-    prevPage.setData({ addresses: prevAdresses })
-    wx.navigateBack({ delta: 1 })
+    const { name, phone, district, detail, defaultflag } = currentAddress
+    const { province, city, avatarUrl } = app.globalData.userInfo
+    UserService.addUserContact({
+      name,
+      city,
+      phone,
+      province,
+      area: district,
+      address: detail,
+      defaultflag,
+      avatar: avatarUrl
+    }).then((data) => {
+      prevPage.setData({ addresses: prevAdresses })
+      wx.navigateBack({ delta: 1 }) 
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 })

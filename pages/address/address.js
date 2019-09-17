@@ -1,5 +1,5 @@
 const { Toast } = require('../../utils/util.js')
-const { UserService } = require('../../services/index')
+const UserService = require('../../services/user')
 const app = getApp()
 
 Page({
@@ -10,42 +10,39 @@ Page({
   data: {
     isFromOrder: false,
     hasUserInfo: true,
-    addresses: [
-      {
-        id: 1,
-        name: 'kuan',
-        phone: 13918544928,
-        district: '',
-        detail: 'adsad dsad ad adsa dsd'
-      },
-      {
-        id: 2,
-        name: 'kuan',
-        phone: 13918544928,
-        district: '',
-        detail: 'adsad dsad ad adsa dsd'
-      }
-    ]
+    addresses: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '收货地址' });
-    if (!app.globalData.userInfo) {
-      return this.setData({
-        hasUserInfo: false
-      }, () => {
-        // Toast.warning('请先登录')
-      })
-    }
+    wx.setNavigationBarTitle({
+      title: '收货地址'
+    })
 
-    if (options && options.isOrder) {
+    UserService.findBizUserContactByUser({
+      pageSize: 1,
+      pageNum: 1
+    }).then((data) => {
+      if (!app.globalData.userInfo) {
+        return this.setData({
+          hasUserInfo: false
+        }, () => {
+          // Toast.warning('请先登录')
+        })
+      }
+
+      if (options && options.isOrder) {
+        this.setData({
+          isFromOrder: true
+        });
+      }
+      console.log(data)
       this.setData({
-        isFromOrder: true
-      });
-    }
+        addresses: data.records || []
+      })
+    })
   },
 
   /**

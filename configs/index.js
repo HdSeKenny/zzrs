@@ -6,7 +6,7 @@ module.exports = {
     }
   },
   appConfigs: {
-    appId: "wxf9b8c16897bbea10",
-    appSecret: "d4bd91b9e178a9c66d3aa1bc2a3d17e7"
+    appId: "wx749d4375ddd97232",
+    appSecret: "19fa8b3a24a43f7fa2a2ea6fe839996f"
   }
 }
