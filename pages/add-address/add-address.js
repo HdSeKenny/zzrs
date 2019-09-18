@@ -1,5 +1,9 @@
 const UserService = require('../../services/user')
+const model = require('../choose-address/model/model.js')
 const app = getApp()
+
+var show = false;
+var item = {};
 
 Page({
 
@@ -14,7 +18,9 @@ Page({
       district: '',
       city: '',
       detail: '',
-      defaultflag: 1
+      defaultflag: 1,
+      areaString: '',
+      province: ''
     },
     isAddAddress: false
   },
@@ -27,7 +33,6 @@ Page({
     wx.setNavigationBarTitle({
       title: hasOptions ? '修改地址' : '增加地址'
     })
-
     
     if (Object.keys(options).length) {
       const { id, phone, name, district, detail } = options
@@ -48,53 +53,44 @@ Page({
     }
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  //生命周期函数--监听页面初次渲染完成
+  onReady: function (e) {
+    var that = this;
+    //请求数据
+    model.updateAreaData(that, 0, e);
+  },
+  //点击选择城市按钮显示picker-view
+  translate: function (e) {
+    model.animationEvents(this, 0, true, 400);
+  },
+  //隐藏picker-view
+  hiddenFloatView: function (e) {
+    model.animationEvents(this, 200, false, 400);
+    item = this.data.item;
+    console.log(item)
+    this.convertAddressData(item);
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
+  convertAddressData: function (item) {
+    const province = item.provinces[item.value[0]].name
+    const city = item.citys[item.value[1]].name
+    const county = item.countys[item.value[2]].name
+    const areaString = `${province} ${city} ${county}`
+    const address = this.data.address
+    
+    address.province = province
+    address.city = city
+    address.county = county
+    address.areaString = areaString
 
+    this.setData({ address })
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+  //滑动事件
+  bindChange: function (e) {
+    model.updateAreaData(this, 1, e);
+    item = this.data.item;
+    this.convertAddressData(item);
   },
 
   bindPhoneInput: function(e) {
@@ -133,17 +129,15 @@ Page({
       prevAdresses[currentIndex] = currentAddress
     }
     
-    const { name, phone, district, detail, defaultflag } = currentAddress
-    const { province, city, avatarUrl } = app.globalData.userInfo
+    const { name, phone, province, county, detail, defaultflag, city } = currentAddress
     UserService.addUserContact({
       name,
       city,
       phone,
       province,
-      area: district,
+      area: county,
       address: detail,
-      defaultflag,
-      avatar: avatarUrl
+      defaultflag
     }).then((data) => {
       prevPage.setData({ addresses: prevAdresses })
       wx.navigateBack({ delta: 1 }) 

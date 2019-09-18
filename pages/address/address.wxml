@@ -6,7 +6,7 @@
     </view>
     <view class='middle' bindtap="bindBackToOrderTap" data-item="{{item}}">
       <p class='name'>{{item.name}}<span class="phone">{{item.phone}}</span></p>
-      <text class='address'>{{item.address}}</text>
+      <text class='address'>{{item.province}} {{item.city}} {{item.area}} {{item.address}}</text>
     </view>
     <view class='right'>
       <p class='edit' bindtap="bindAddAddressTap" data-id="{{item}}">编辑</p>

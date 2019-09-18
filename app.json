@@ -16,7 +16,8 @@
     "pages/help-answer/help-answer",
     "pages/user-details/user-details",
     "pages/authorize/authorize",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/choose-address/choose-address"
   ],
   "tabBar": {
     "color": "#999999",

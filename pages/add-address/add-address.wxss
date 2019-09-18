@@ -1,3 +1,5 @@
+@import '../choose-address/model/model.wxss';
+
 .add-address-page {
   padding: 0 15px;  
 }

@@ -98,8 +98,8 @@ Page({
   bindAddAddressTap: function(e) {
     const item = e.currentTarget.dataset.id
     if (item) {
-      const { id, name, phone, district, detail } = item
-      const queryString = `id=${id}&name=${name}&phone=${phone}&district=${district}&detail=${detail}`
+      const { id, name, phone, province, city, area, address } = item
+      const queryString = `id=${id}&name=${name}&phone=${phone}&province=${province}&city=${city}&area=${area}&address=${address}`
       wx.navigateTo({
         url: `../add-address/add-address?${queryString}`
       })

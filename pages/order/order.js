@@ -29,30 +29,6 @@ Page({
         isLooker: isLooker === '1'
       })
     })
-
-    // UserService.getUserDefaultAddress().then((data) => {
-    //   console.log('user address', data)
-    // })
-    // wx.request({
-    //   url: "https://www.cnqiangba.com/goodsku/findGoodSkuDetail",
-    //   method: 'POST',
-    //   data: {
-    //     id: options.id
-    //   },
-    //   header: {
-    //     "Content-Type": "application/x-www-form-urlencoded"
-    //   },
-    //   success: (res) => {
-    //     console.log(res.data.data)
-    //     this.setData({
-    //       good: res.data.data,
-    //       isLooker: options.isLooker === '1'
-    //     })
-    //   },
-    //   fail: function (err) {
-    //     console.log(err)
-    //   }
-    // })
   },
 
   /**
@@ -109,6 +85,28 @@ Page({
     console.log(app.globalData)
     if (!this.data.address) {
       Toast.warning('请填写收货地址！')
+    }
+    else {
+      const { id } = this.data.good
+      const { phone, address, area, city, province } = this.data.address
+      const { userInfo } = app.globalData.userInfo
+      const { nickName } = userInfo
+      GoodService.buyGood({
+        onlookid: id,
+        buyerremark: '',
+        receivername: nickName,
+        receivertel: phone,
+        receiveraddress: address,
+        receiverarea: area,
+        receivercity: city,
+        receiverprovince: province,
+        ordertype: 1
+      }).then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 })

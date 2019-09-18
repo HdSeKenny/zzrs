@@ -12,11 +12,15 @@ function findGoodOnlook(data) {
   return request.post('/goodsku/findGoodOnlook', data)
 }
 
+function weChatFindGoodOnlook(data) {
+  return request.post('/wechat/onlook/findGoodOnlook', data)
+}
+
 function getCartGoods() {
   return request.post('/wechat/order/findMyonlookRecord', data)
 }
 
-function buyGood() {
+function buyGood(data) {
   return request.post('/wechat/onlook/buyGood', data)
 }
 
@@ -24,5 +28,7 @@ module.exports = {
   getGoodsList,
   getGoodDetail,
   findGoodOnlook,
-  getCartGoods
+  getCartGoods,
+  weChatFindGoodOnlook,
+  buyGood
 }
