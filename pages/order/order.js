@@ -20,7 +20,7 @@ Page({
     })
     const { id, isLooker } = options
     Promise.all([
-      GoodService.findGoodOnlook({ id }),
+      GoodService.weChatFindGoodOnlook({ id }),
       UserService.getUserDefaultAddress()
     ]).then((data) => {
       this.setData({
@@ -91,22 +91,59 @@ Page({
       const { phone, address, area, city, province } = this.data.address
       const { userInfo } = app.globalData.userInfo
       const { nickName } = userInfo
-      GoodService.buyGood({
-        onlookid: id,
-        buyerremark: '',
-        receivername: nickName,
-        receivertel: phone,
-        receiveraddress: address,
-        receiverarea: area,
-        receivercity: city,
-        receiverprovince: province,
-        ordertype: 1
-      }).then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+
+
+      const formData = new FormData()
+      formData.append('onlookid', id)
+      formData.append('buyerremark', '')
+      formData.append('receivername', nickName)
+      formData.append('receivertel', phone)
+      formData.append('receiveraddress', address)
+      formData.append('receiverarea', area)
+      formData.append('receivercity', city)
+      formData.append('receiverprovince', province)
+      formData.append('ordertype', 1)
+
+      const options = {
+        url: `https://www.cnqiangba.com/wechat/onlook/buyGood`,
+        method: 'POST',
+        data: formData,
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        success: (res) => {
+          console.log(res.data)
+          // resolve(res.data.data)
+        },
+        fail: (err) => {
+          console.log(err)
+        }
+      };
+
+      if (wx.getStorageSync('token')) {
+        // console.log(wx.getStorageSync('token'))
+        header.AUTHORIZATION = `${wx.getStorageSync('token')}`
+      }
+
+      wx.request(options);
+
+
+      // GoodService.buyGood({
+      //   onlookid: id,
+      //   buyerremark: '',
+      //   receivername: nickName,
+      //   receivertel: phone,
+      //   receiveraddress: address,
+      //   receiverarea: area,
+      //   receivercity: city,
+      //   receiverprovince: province,
+      //   ordertype: 1
+      // }).then((res) => {
+      //   console.log(res)
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
     }
   }
 })

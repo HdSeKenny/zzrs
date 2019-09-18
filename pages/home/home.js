@@ -21,9 +21,9 @@ Page({
   },
 
   bindDetailTap: function (e) {
-    const gId = e.currentTarget.dataset.id
+    const item = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../detail/detail?id=${gId}`
+      url: `../detail/detail?id=${item.id}&skuid=${item.skuid}`
     })
   },
 

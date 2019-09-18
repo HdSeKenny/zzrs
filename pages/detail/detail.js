@@ -18,10 +18,11 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '详细' })
-    if (options) {
-      GoodService.getGoodDetail(options).then((data) => {
-        console.log(data)
-        this.findGoodOnlook(options, data)
+    if (options && Object.keys(options).length) {
+      GoodService.getGoodDetail({
+        id: options.skuid
+      }).then((data) => {
+        this.findGoodOnlook({ id: options.id }, data)
       })
       .catch(err => {
         Toast.error(err.toString())
@@ -48,8 +49,8 @@ Page({
   findGoodOnlook: function (options, detailGood){
     GoodService.findGoodOnlook(options)
       .then(data => {
-        const good = data
-        const newGood = Object.assign({}, detailGood, good)
+        // const good = data
+        const newGood = Object.assign({}, detailGood, data)
         newGood.swiperImgs = detailGood.imagePath.split(',')
 
         const deadline = new Date(newGood.beginTime).getTime();

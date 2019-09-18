@@ -10,7 +10,7 @@
     wx:for="{{goods}}"
     wx:key="{{item.id}}"
     bindtap="bindDetailTap"
-    data-id="{{item.skuid}}"
+    data-id="{{item}}"
   >
     <view class="good-tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
     <view class='count-down' wx:else>

@@ -9,7 +9,7 @@ function getGoodDetail(data) {
 }
 
 function findGoodOnlook(data) {
-  return request.post('/goodsku/findGoodOnlook', data)
+  return request.post('/wechat/onlook/findGoodOnlook', data)
 }
 
 function weChatFindGoodOnlook(data) {
