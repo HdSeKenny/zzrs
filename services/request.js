@@ -19,7 +19,7 @@ const request = {
     
     if (wx.getStorageSync('token')) {
       // console.log(wx.getStorageSync('token'))
-      header.AUTHORIZATION = `${wx.getStorageSync('token')}`
+      options.header.AUTHORIZATION = `${wx.getStorageSync('token')}`
     }
 
     wx.request(options);
@@ -41,7 +41,7 @@ const request = {
     };
 
     if (wx.getStorageSync('token')) {
-      header.AUTHORIZATION = `${wx.getStorageSync('token')}`
+      options.header.AUTHORIZATION = `${wx.getStorageSync('token')}`
     }
 
     wx.request(options);

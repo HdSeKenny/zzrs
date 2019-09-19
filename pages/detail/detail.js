@@ -51,13 +51,20 @@ Page({
       .then(data => {
         // const good = data
         const newGood = Object.assign({}, detailGood, data)
-        newGood.swiperImgs = detailGood.imagePath.split(',')
-
         const deadline = new Date(newGood.beginTime).getTime();
         const now = new Date().getTime();
         const tmp = deadline - now;
+
+        newGood.swiperImgs = detailGood.imagePath.split(',')
         newGood.isGrabbing = tmp <= 0;
-        console.log('newGood', newGood)
+        // Object.keys(newGood).forEach((goodKey) => {
+        //   let propertyValue = newGood[goodKey]
+        //   // const isPrice = goodKey.includes('price') || goodKey.includes('Price')
+        //   if (goodKey.includes('price') || goodKey.includes('Price')) {
+        //     const a = propertyValue
+        //     propertyValue = a.toFixed(2)
+        //   }
+        // });
         this.setData({ good: newGood }, () => {
           if (!newGood.isGrabbing) {
             this.calculateCountDownTime()

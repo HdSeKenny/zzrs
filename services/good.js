@@ -16,7 +16,7 @@ function weChatFindGoodOnlook(data) {
   return request.post('/wechat/onlook/findGoodOnlook', data)
 }
 
-function getCartGoods() {
+function getCartGoods(data) {
   return request.post('/wechat/order/findMyonlookRecord', data)
 }
 

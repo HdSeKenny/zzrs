@@ -51,7 +51,9 @@ Page({
   onHide: function () {
 
   },
-
+  formSubmit(e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+  },
   /**
    * Lifecycle function--Called when page unload
    */
@@ -93,23 +95,35 @@ Page({
       const { nickName } = userInfo
 
 
-      const formData = new FormData()
-      formData.append('onlookid', id)
-      formData.append('buyerremark', '')
-      formData.append('receivername', nickName)
-      formData.append('receivertel', phone)
-      formData.append('receiveraddress', address)
-      formData.append('receiverarea', area)
-      formData.append('receivercity', city)
-      formData.append('receiverprovince', province)
-      formData.append('ordertype', 1)
+      // const formData = new FormData()
+      // formData.append('onlookid', id)
+      // formData.append('buyerremark', '')
+      // formData.append('receivername', nickName)
+      // formData.append('receivertel', phone)
+      // formData.append('receiveraddress', address)
+      // formData.append('receiverarea', area)
+      // formData.append('receivercity', city)
+      // formData.append('receiverprovince', province)
+      // formData.append('ordertype', 1)
 
       const options = {
         url: `https://www.cnqiangba.com/wechat/onlook/buyGood`,
         method: 'POST',
-        data: formData,
+        data: {
+          onlookid: parseInt(id),
+          buyerremark: '',
+          receivername: nickName,
+          receivertel: phone,
+          receiveraddress: address,
+          receiverarea: area,
+          receivercity: city,
+          receiverprovince: province,
+          ordertype: 1,
+          transType: 'JSAPI',
+          buynum: 1
+        },
         header: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "application/x-www-form-urlencoded"
         },
         success: (res) => {
           console.log(res.data)
@@ -122,7 +136,7 @@ Page({
 
       if (wx.getStorageSync('token')) {
         // console.log(wx.getStorageSync('token'))
-        header.AUTHORIZATION = `${wx.getStorageSync('token')}`
+        options.header.AUTHORIZATION = `${wx.getStorageSync('token')}`
       }
 
       wx.request(options);
