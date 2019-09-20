@@ -127,6 +127,8 @@ Page({
         },
         success: (res) => {
           console.log(res.data)
+          const payParams = res.data.data
+          this.processPay(payParams)
           // resolve(res.data.data)
         },
         fail: (err) => {
@@ -159,5 +161,35 @@ Page({
       //   console.log(err)
       // })
     }
+  },
+
+  processPay: function(param) {
+    wx.requestPayment({
+      timeStamp: param.timeStamp,
+      nonceStr: param.nonceStr,
+      package: param.packageValue,
+      signType: param.signType,
+      paySign: param.paySign,
+      success: function (res) {
+        // success
+        console.log("wx.requestPayment返回信息", res);
+        wx.showModal({
+          title: '支付成功',
+          content: '您将在“微信支付”官方号中收到支付凭证',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+            } else if (res.cancel) {
+            }
+          }
+        })
+      },
+      fail: function () {
+        console.log("支付失败");
+      },
+      complete: function () {
+        console.log("支付完成(成功或失败都为完成)");
+      }
+    })
   }
 })

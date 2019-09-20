@@ -1,8 +1,5 @@
 const UserService = require('../../services/user')
 
-const app = getApp()
-/*统一支付接口*/
-
 async function unitedPayRequest (payParams, goodData) {
   // "prepay_id=wx192338501021972f31d1bbaa1648747900"
   const { appId, nonceStr, packageValue, paySign, signType, timeStamp } = payParams
@@ -119,3 +116,6 @@ function processPay(param) {
   })
 }
 
+module.exports = {
+  processPay
+}
