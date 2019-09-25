@@ -1,13 +1,5 @@
-.detail-page {
-  
-}
-
 .good-detail {
   color: #A2ABCC;
-}
-
-.good-detail .image {
-  /* text-align: center; */
 }
 
 .slide-image {
@@ -15,40 +7,50 @@
 }
 
 .detail {
-  margin: 10px 30px;
-  padding: 20px 10px;
+  margin: 30px 50px 15px 50px;
+  padding: 40px 10px 20px;
   border: 1px solid #eee;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
 }
 
 .detail .good-tag {
+  padding:5px 15px;
+  margin:-40px 0 0px -12px;
   color:#FFFFFF;
   background:#EC5D29;
-  padding:5px 15px;
-  margin:-20px 0 0px -8px;
-  width:45px;
-  font-size:11px;
-  position:relative;
-  z-index:1;
   border-radius:5px;
+  font-size:13px;
+  z-index:1;
+  position:relative;
+  float: left;
 }
 
 .detail-text {
-  font-size: 11px;
+  font-size: 13px;
   text-align: center;
   padding: 10px !important;
 }
 
 .brand-name {
+  font-size: 18px;
+  font-weight: bold;
   text-align: center;
   display: block;
-  font-weight: 600;
+  clear: left;
+}
+
+.brand-img {
+  text-align: center;
+}
+
+.brand-img .image {
+  height: 150px;
 }
 
 .detail button {
   width:100px;
   height:25px;
-  font-size: 11px;
+  font-size: 13px;
   background: #EC5D29;
   line-height:25px;
   margin: 10px auto;
@@ -60,7 +62,7 @@
 }
 
 .left-time {
-  font-size: 13px;
+  font-size: 15px;
   color: #333;
   font-weight: 600;
   text-align: center;
@@ -68,28 +70,36 @@
 }
 
 .left-time .unit {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
 }
 
 .params {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 
+.params span {
+  font-size: 14px;
+}
+
 .param-item {
-  padding: 2px 10px !important;
+  padding: 2px !important;
 }
 
 .checkout button {
-  width:150px;
-  height:30px;
-  font-size: 12px;
+  height: 35px;
+  font-size: 14px;
   background: #A2ABCC;
-  line-height:30px;
-  /* margin: 10px auto; */
+  line-height:35px;
   border: none;
+  border-radius: 5px;
 }
-.detail-swiper {
-  /* height: 110px; */
+
+.checkout .i-btn-small.i-btn-circle {
+  border-radius: 5px;
+}
+
+.checkout {
+  margin: 0 40px;
 }

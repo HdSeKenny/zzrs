@@ -10,6 +10,7 @@
     "i-grid-icon": "../../iview/dist/grid-icon/index",
     "i-grid-label": "../../iview/dist/grid-label/index",
     "i-tag": "../../iview/dist/tag/index",
-    "i-toast": "../../iview/dist/toast/index"
+    "i-toast": "../../iview/dist/toast/index",
+    "i-spin": "../../iview/dist/spin/index"
   }
 }

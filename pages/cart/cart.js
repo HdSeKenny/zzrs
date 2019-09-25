@@ -5,28 +5,42 @@ const app = getApp()
 Page({
   data: {
     hasUserInfo: true,
-    orders: []
+    orders: [],
+    firstRender: true,
+    spinShow: true
   },
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '购物车' })
+    wx.setNavigationBarTitle({ title: '我的围观' })
     if (!app.globalData.userInfo) {
       return this.setData({
-        hasUserInfo: false
+        hasUserInfo: false,
+        firstRender: false,
+        spinShow: false
       }, () => {
         Toast.warning('请先登录')
       })
     }
     else if (options) {
       GoodService.getCartGoods({
-        openid: 1,
-        // userId: 1,
-        pageSize: 1,
-        pageNum: 20
+        pageSize: 20,
+        pageNum: 1
       })
       .then(data => {
+        const orders = data.records.map((record) => {
+          const begin = new Date(record.beginTime).getTime()
+          const now = new Date().getTime()
+          const isGrabbing = now > begin
+          record.isStopped = record.goodOnlookStatus === 2
+          record.statusText = (isGrabbing && !record.isStopped) ? '正在开抢' : (record.isStopped ? '抢购结束' : '')
+          record.statusClasses = `tag-btn ${record.statusText === '抢购结束' ? 'stopped' : ''}`
+          return record
+        })
         this.setData({
           hasUserInfo: true,
-          orders: data
+          firstRender: false,
+          orders
+        }, () => {
+          this.setData({spinShow: false})
         })
       })
       .catch(err => {
@@ -36,17 +50,21 @@ Page({
   },
 
   bindDetailTap: function (e) {
-    const gId = e.currentTarget.dataset.id
+    const item = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../detail/detail?id=${gId}`
+      url: `../detail/detail?id=${item.id}&skuid=${item.skuid}`
     })
   },
+
   onShow: function() {
-    this.onLoad({
-      openid: 1,
-      // userId: 1,
-      pageSize: 1,
-      pageNum: 20
-    })
+    if (!this.data.firstRender) {
+      this.onLoad({
+        pageSize: 20,
+        pageNum: 1
+      })
+    }
+  },
+  onHide() {
+    Toast.hide()
   }
 })

@@ -1,4 +1,5 @@
-const app = getApp();
+const UserService = require('../../services/user')
+const app = getApp()
 
 Page({
   data: {
@@ -7,54 +8,26 @@ Page({
     showAuth: false
   },
   onLoad: function () {
-    // 查看是否授权
+    wx.setNavigationBarTitle({ title: '查看授权' })
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: (res) => {
-              // this.queryUsreInfo(); //从数据库获取用户信息
-
-              //用户已经授权过
-
+              app.globalData.userInfo = res.userInfo
+              this.queryUsreInfo(res)
             }
-          });
+          })
         }
         else {
-          this.setData({
-            showAuth: true
-          })
+          this.setData({showAuth: true})
         }
       }
     })
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
-      console.log(e.detail.userInfo)
-      //用户按了允许授权按钮
-      //插入登录的用户的相关信息到数据库
-      wx.request({
-        url: app.globalData.urlPath + 'user/add',
-        data: {
-          openid: getApp().globalData.openid,
-          nickName: e.detail.userInfo.nickName,
-          avatarUrl: e.detail.userInfo.avatarUrl,
-          province: e.detail.userInfo.province,
-          city: e.detail.userInfo.city
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          //从数据库获取用户信息
-          this.queryUsreInfo();
-          console.log("插入小程序登录用户信息成功！");
-        }
-      });
-      //授权成功后，跳转进入小程序首页
-      wx.switchTab({
-        url: '/pages/home/home'
-      })
+      this.queryUsreInfo(e.detail)
     } else {
       //用户按了拒绝按钮
       wx.showModal({
@@ -72,19 +45,19 @@ Page({
   },
 
   //获取用户信息接口
-  queryUsreInfo: function () {
-    wx.request({
-      url: app.globalData.urlPath + 'user/userInfo',
-      data: {
-        openid: app.globalData.openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data);
-        getApp().globalData.userInfo = res.data;
-      }
+  queryUsreInfo: function (res) {
+    UserService.getUserInfo(res).then((data) => {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.globalData.userInfo = data
+      wx.setStorageSync('open_params', {
+        openId: data.openId,
+        unionId: data.unionId
+      })
+
+      wx.switchTab({
+        url: '/pages/home/home'
+      })
     })
   }
 

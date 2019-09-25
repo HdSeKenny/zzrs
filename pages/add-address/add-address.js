@@ -1,5 +1,6 @@
 const UserService = require('../../services/user')
 const model = require('../choose-address/model/model.js')
+const { Toast } = require('../../utils/util.js')
 const app = getApp()
 
 var show = false;
@@ -35,14 +36,18 @@ Page({
     })
     
     if (Object.keys(options).length) {
-      const { id, phone, name, district, detail } = options
+      const { id, name, phone, province, city, area, address } = options
+      // const { id, phone, name, district, detail } = options
       this.setData({
         address: {
           id: parseInt(id),
           name,
           phone: parseInt(phone),
-          district,
-          detail
+          province,
+          city,
+          district: area,
+          detail: address,
+          areaString: `${province} ${city} ${area}`
         }
       })
     }
@@ -67,7 +72,6 @@ Page({
   hiddenFloatView: function (e) {
     model.animationEvents(this, 200, false, 400);
     item = this.data.item;
-    console.log(item)
     this.convertAddressData(item);
   },
 
@@ -118,7 +122,11 @@ Page({
     const prevPage = pages[pages.length - 2]
     const prevAdresses = prevPage.data.addresses
     const currentAddress = this.data.address
-    
+    const { name, phone, province, county, detail, defaultflag, city } = currentAddress
+    if (!name || !phone || !province || !county || !detail || !defaultflag || !city) {
+      return Toast.warning('请填写完整的地址信息')
+    }
+
     if (this.data.isAddAddress) {
       // add address
       prevAdresses.push(currentAddress)
@@ -129,7 +137,6 @@ Page({
       prevAdresses[currentIndex] = currentAddress
     }
     
-    const { name, phone, province, county, detail, defaultflag, city } = currentAddress
     UserService.addUserContact({
       name,
       city,

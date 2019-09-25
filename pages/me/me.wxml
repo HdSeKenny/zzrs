@@ -1,33 +1,58 @@
 <view class='container'>
   <view class='me'>
     <view class='avatar-bg'>
-      <view bindtap='bindUserDetailsTap'>
+      <image class='me-background' src='/public/images/me_background.png' mode="scaleToFit"></image>
+      <view bindtap='bindUserDetailsTap' class='avatar-wrapper'>
         <view>
           <image class='avatar' src='{{userInfo.avatarUrl || "/public/images/qiangba_logo.png"}}'></image>
+          <image class='avatar-background' src='/public/images/avatar_background.png'></image>
+          <image class='empty-box' src='/public/images/empty_box.png'></image>
+          <p class="empty-box-text">www.cnqiangba.com</p>
         </view>
-        <!-- bindgetuserinfo="getUserInfo" -->
         <p class="text" wx:if="{{!hasUserInfo}}"> 点击登陆 </p>
         <p class="text" wx:else>{{userInfo.nickName}} </p>
       </view>
     </view>
     <view class="menu">
-      <i-cell-group>
-        <i-cell i-class="menu-link-cell" url="/pages/address/address" is-link>
-          <image src="/public/images/bg_2.png"></image>
-        </i-cell>
-        <i-cell i-class="menu-link-cell" url="/pages/order-history/order-history" is-link>
-          <image src="/public/images/bg_2.png"></image>
-        </i-cell>
-        <i-cell i-class="menu-link-cell" url="/pages/contact/contact" is-link>
-          <image src="/public/images/bg_4.png"></image>
-        </i-cell>
-        <i-cell i-class="menu-link-cell" url="/pages/help-center/help-center" is-link>
-          <image src="/public/images/bg_5.png"></image>
-        </i-cell>
-        <i-cell i-class="menu-link-cell" bind:click="onShareAppMessage">
-          <image src="/public/images/bg_6.png"></image>
-        </i-cell>
-      </i-cell-group>
+      <image class='v-line' src='/public/images/v_line.png'></image>
+      <image class='h-line-1' src='/public/images/h_line.png'></image>
+      <image class='h-line-2' src='/public/images/h_line.png'></image>
+      <view class='menu-icons'>
+        <i-row i-class='icon-row'>
+          <i-col span="12" i-class="icon-col">
+            <navigator url="/pages/order-history/order-history">
+              <image src="/public/images/我的订单.png" mode="scaleToFit"></image>
+            </navigator>
+          </i-col>
+          <i-col span="12" i-class="icon-col">
+            <navigator url="/pages/coupon/coupon">
+              <image src="/public/images/优惠券.png" mode="scaleToFit"></image>
+            </navigator>
+          </i-col>
+        </i-row>
+        <i-row i-class='icon-row'>
+          <i-col span="12" i-class="icon-col">
+            <navigator url="/pages/address/address">
+              <image src="/public/images/收货地址.png" mode="scaleToFit"></image>
+            </navigator>
+          </i-col>
+          <i-col span="12" i-class="icon-col">
+            <navigator url="/pages/contact/contact">
+              <image src="/public/images/联系客服.png" mode="scaleToFit"></image>
+            </navigator>
+          </i-col>
+        </i-row>
+        <i-row i-class='icon-row'>
+          <i-col span="12" i-class="icon-col">
+            <navigator url="/pages/help-center/help-center">
+              <image src="/public/images/帮助中心.png" mode="scaleToFit"></image>
+            </navigator>
+          </i-col>
+          <i-col span="12" i-class="icon-col" bind:click="onShareAppMessage">
+            <image src="/public/images/分享好友.png" mode="scaleToFit"></image>
+          </i-col>
+        </i-row>
+      </view>
     </view>
   </view>
 </view>

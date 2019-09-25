@@ -1,30 +1,33 @@
 <view class="container">
+  <i-spin fix size="large" wx:if="{{spinShow}}" i-class="spinner"></i-spin>
   <swiper indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper'>
-      <block wx:for="{{sliders}}" wx:key="{{index}}">
-        <swiper-item><image src="{{item.imgurl}}" class="slide-image" /></swiper-item>
-      </block>
-    </swiper>
-  <view
-    class="{{item.classes}}"
-    wx:for="{{goods}}"
-    wx:key="{{item.id}}"
-    bindtap="bindDetailTap"
-    data-id="{{item}}"
-  >
-    <view class="good-tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
-    <view class='count-down' wx:else>
-      {{item.hours}}<span class="unit">时</span>
-      {{item.minutes}}<span class="unit">分</span>
-      {{item.seconds}}<span class="unit">秒</span>
-    </view>
-    <view class='item-rows'>
-      <block>
-        <view class='image-row'><image src="{{item.goodimg}}"></image></view>
-        <span class='name'>{{item.goodname}}</span>
-        <p class='lowest-row'>最低价格:<span class="price">￥{{item.currentprice}}</span></p>
-        <p class="looker-count">{{item.lookercount}} 人围观</p>
-      </block>
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper'>
+    <block wx:for="{{sliders}}" wx:key="{{index}}">
+      <swiper-item><image src="{{item.imgurl}}" class="slide-image" /></swiper-item>
+    </block>
+  </swiper>
+  <view class='items-wrapper'>
+    <view
+      class="{{item.classes}}"
+      wx:for="{{goods}}"
+      wx:key="{{item.id}}"
+      bindtap="bindDetailTap"
+      data-id="{{item}}"
+    >
+      <view class="good-tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
+      <view class='count-down' wx:else>
+        {{item.hours}}<span class="unit">时</span>
+        {{item.minutes}}<span class="unit">分</span>
+        {{item.seconds}}<span class="unit">秒</span>
+      </view>
+      <view class='item-rows'>
+        <block>
+          <view class='image-row'><image src="{{item.goodimg}}"></image></view>
+          <span class='name'>{{item.goodname}}</span>
+          <p class='lowest-row'>最低价格:<span class="price">￥{{item.currentprice}}</span></p>
+          <p class="looker-count">{{item.lookercount}} 人围观</p>
+        </block>
+      </view>
     </view>
   </view>
 </view>

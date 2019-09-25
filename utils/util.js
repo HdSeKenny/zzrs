@@ -21,9 +21,13 @@ const Toast = {
     setTimeout(() => {
       $Toast({
         content: msg,
-        type: 'warning'
+        type: 'warning',
+        duration: 3
       })
     }, 500)
+  },
+  hide: () => {
+    $Toast.hide()
   },
   error: msg => {
     setTimeout(() => {

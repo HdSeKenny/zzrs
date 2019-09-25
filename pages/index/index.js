@@ -1,4 +1,6 @@
 Page({
   data: {},
-  onLoad: function () {}
+  onLoad: function () {
+    wx.setNavigationBarTitle({ title: 'loading' })
+  }
 })

@@ -10,6 +10,8 @@
     "i-grid-icon": "../../iview/dist/grid-icon/index",
     "i-grid-label": "../../iview/dist/grid-label/index",
     "i-tag": "../../iview/dist/tag/index",
-    "i-icon": "../../iview/dist/icon/index"
+    "i-icon": "../../iview/dist/icon/index",
+    "i-row": "../../iview/dist/row/index",
+    "i-col": "../../iview/dist/col/index"
   }
 }

@@ -17,7 +17,41 @@ Page({
     interval: 3000,
     duration: 1000,
 
-    showAuthModal: false
+    showAuthModal: false,
+    firstRender: true,
+    spinShow: true
+  },
+
+  fetchData: function () {
+    const goodsParams = {
+      pageNum: 1,
+      pageSize: 20,
+      status: 1
+    }
+
+    Promise.all([
+      BannerService.getHomeSliders(),
+      GoodService.getGoodsList(goodsParams)
+    ])
+      .then((data) => {
+        const sliders = data[0]
+        const goods = data[1] ? data[1].records : []
+        goods.forEach((g, idx) => {
+          const beginTime = g.beginTime.replace(/-/g, '/')
+          const beginTimeTamp = Date.parse(beginTime)
+          const now = new Date().getTime()
+          const tmp = beginTimeTamp - now
+          g.isGrabbing = tmp <= 0
+          g.classes = `item-block ${idx % 2 !== 0 ? 'right-one' : ''}`
+        })
+        this.setData({ goods, sliders, firstRender: false }, () => {
+          this.setData({ spinShow: false })
+          this.calculateCountDownTime(goods)
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   },
 
   bindDetailTap: function (e) {
@@ -31,62 +65,38 @@ Page({
     wx.setNavigationBarTitle({ title: '首页' })
     this.fetchData()
   },
-  calculateCountDownTime: function () {
-    const goods = this.data.goods;
-    goods.forEach((g) => {
-      if (!g.isGrabbing) {
-        this[`timeInterval_${g.skuid}`] = setInterval(() => {
-          const deadline = new Date(g.beginTime).getTime();
-          const now = new Date().getTime();
-          const tmp = deadline - now;
-          if (tmp < 0) {
-            clearInterval(this[`timeInterval_${g.skuid}`]);
-            g.isGrabbing = true;
+
+  calculateCountDownTime: function (goods) {
+    const countInterval = setInterval(() => {
+      goods.forEach((g) => {
+        if (!g.isGrabbing) {
+          const deadline = new Date(g.beginTime).getTime()
+          const now = new Date().getTime()
+          const tmp = deadline - now
+          if (tmp > 0) {
+            g.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            g.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60))
+            g.seconds = Math.floor((tmp % (1000 * 60)) / 1000)
           }
           else {
-            g.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            g.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60));
-            g.seconds = Math.floor((tmp % (1000 * 60)) / 1000);
+            g.isGrabbing = true
           }
-          this.setData({ goods })
-        }, 1000);
+        }
+      })
+      
+      const countedTimeGoods = goods.filter(g => !g.isGrabbing)
+      if (countedTimeGoods.length) {
+        this.setData({ goods })
       }
-    })
+      else {
+        clearInterval(countInterval)
+      }
+    }, 1000)
   },
 
   onShow: function () {
-    this.onLoad()
-  },
-
-  fetchData: function () {
-    const goodsParams = {
-      // categoryId: 1,
-      pageNum: 1,
-      pageSize: 20,
-      status: 1
+    if (!this.data.firstRender) {
+      this.onLoad()
     }
-
-    Promise.all([
-      BannerService.getHomeSliders(),
-      GoodService.getGoodsList(goodsParams)
-    ])
-      .then((data) => {
-        const sliders = data[0]
-        const goods = data[1].records
-        goods.forEach((g, idx) => {
-          const deadline = new Date(g.beginTime).getTime();
-          const now = new Date().getTime();
-          const tmp = deadline - now;
-          g.isGrabbing = tmp <= 0;
-          g.classes = `item-block ${idx % 2 !== 0 ? 'right-one' : ''}`
-        })
-
-        this.setData({ goods, sliders }, () => {
-          this.calculateCountDownTime()
-        })
-      })
-      .catch((err) => {
-        // TO DO
-      })
   }
 })

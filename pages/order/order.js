@@ -11,13 +11,8 @@ Page({
     address: null
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '订单支付'
-    })
+    wx.setNavigationBarTitle({title: '订单支付'})
     const { id, isLooker } = options
     Promise.all([
       GoodService.weChatFindGoodOnlook({ id }),
@@ -31,135 +26,43 @@ Page({
     })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-  formSubmit(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  },
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onPayOrder: function () {
-    console.log(this.data.good)
-    console.log(app.globalData)
+    const { address, good, isLooker }= this.data
     if (!this.data.address) {
       Toast.warning('请填写收货地址！')
+    }
+    else if (this.data.isLooker) {
+      GoodService.onLookGood({ onlookid: good.id, transType: 'JSAPI' })
+        .then((res) => {
+          this.processPay(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
     else {
       const { id } = this.data.good
       const { phone, address, area, city, province } = this.data.address
-      const { userInfo } = app.globalData.userInfo
+      const { userInfo } = app.globalData
       const { nickName } = userInfo
-
-
-      // const formData = new FormData()
-      // formData.append('onlookid', id)
-      // formData.append('buyerremark', '')
-      // formData.append('receivername', nickName)
-      // formData.append('receivertel', phone)
-      // formData.append('receiveraddress', address)
-      // formData.append('receiverarea', area)
-      // formData.append('receivercity', city)
-      // formData.append('receiverprovince', province)
-      // formData.append('ordertype', 1)
-
-      const options = {
-        url: `https://www.cnqiangba.com/wechat/onlook/buyGood`,
-        method: 'POST',
-        data: {
-          onlookid: parseInt(id),
-          buyerremark: '',
-          receivername: nickName,
-          receivertel: phone,
-          receiveraddress: address,
-          receiverarea: area,
-          receivercity: city,
-          receiverprovince: province,
-          ordertype: 1,
-          transType: 'JSAPI',
-          buynum: 1
-        },
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        success: (res) => {
-          console.log(res.data)
-          const payParams = res.data.data
-          this.processPay(payParams)
-          // resolve(res.data.data)
-        },
-        fail: (err) => {
-          console.log(err)
-        }
-      };
-
-      if (wx.getStorageSync('token')) {
-        // console.log(wx.getStorageSync('token'))
-        options.header.AUTHORIZATION = `${wx.getStorageSync('token')}`
-      }
-
-      wx.request(options);
-
-
-      // GoodService.buyGood({
-      //   onlookid: id,
-      //   buyerremark: '',
-      //   receivername: nickName,
-      //   receivertel: phone,
-      //   receiveraddress: address,
-      //   receiverarea: area,
-      //   receivercity: city,
-      //   receiverprovince: province,
-      //   ordertype: 1
-      // }).then((res) => {
-      //   console.log(res)
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
+      GoodService.buyGood({
+        onlookid: parseInt(id),
+        buyerremark: '',
+        receivername: nickName,
+        receivertel: phone,
+        receiveraddress: address,
+        receiverarea: area,
+        receivercity: city,
+        receiverprovince: province,
+        ordertype: 1,
+        transType: 'JSAPI',
+        buynum: 1
+      }).then((res) => {
+        this.processPay(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   },
 
@@ -171,8 +74,7 @@ Page({
       signType: param.signType,
       paySign: param.paySign,
       success: function (res) {
-        // success
-        console.log("wx.requestPayment返回信息", res);
+        console.log("wx.requestPayment返回信息", res)
         wx.showModal({
           title: '支付成功',
           content: '您将在“微信支付”官方号中收到支付凭证',
@@ -184,12 +86,17 @@ Page({
           }
         })
       },
-      fail: function () {
-        console.log("支付失败");
+      fail: function (err) {
+        console.log("支付失败", err)
       },
       complete: function () {
-        console.log("支付完成(成功或失败都为完成)");
+        console.log("支付完成(成功或失败都为完成)")
       }
+    })
+  },
+  onUserCoupon() {
+    wx.navigateTo({
+      url: '../coupon/coupon'
     })
   }
 })

@@ -24,11 +24,21 @@ function buyGood(data) {
   return request.post('/wechat/onlook/buyGood', data)
 }
 
+function getMyCoupon(data) {
+  return request.post('/wechat/coupon/findMyCouponRecord', data)
+}
+
+function onLookGood(data) {
+  return request.post('/wechat/onlook/onlookGoodOrder', data)
+}
+
 module.exports = {
   getGoodsList,
   getGoodDetail,
   findGoodOnlook,
   getCartGoods,
   weChatFindGoodOnlook,
-  buyGood
+  buyGood,
+  getMyCoupon,
+  onLookGood
 }

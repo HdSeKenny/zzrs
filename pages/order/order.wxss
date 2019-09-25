@@ -2,7 +2,7 @@
 .order {
   background: #eee;
   padding: 10px 0;
-  font-size: 12px;
+  font-size: 14px;
   /* display: flex;
   flex-flow: row wrap; */
 }
@@ -67,7 +67,7 @@
 
 .order .price {
   color: #EC5D29;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -83,6 +83,24 @@
 .options .sale {
   margin-top: 5px;
   text-align: right;
+}
+
+.options .sale i-cell {
+  font-size: 12px;
+  display: inline-block;
+}
+
+.options .sale i-cell .coupon-label {
+  padding: 0px 5px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.options .sale i-cell .coupon {
+  color: #999999;
+  padding: 3px 5px;
+  font-size: 12px;
+  display: inline-block;
 }
 
 .options .sum {

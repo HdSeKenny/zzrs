@@ -9,24 +9,19 @@ Page({
     indicatorDots: false,
     autoplay: true,
     interval: 3000,
-    duration: 1000
+    duration: 1000,
+    firstRender: true,
+    spinShow: true
   },
   methods: {
     keepPriceDecimal(value, num) {
-      return keepDecimalSpaces(value, num);
+      return keepDecimalSpaces(value, num)
     }
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '详细' })
     if (options && Object.keys(options).length) {
-      GoodService.getGoodDetail({
-        id: options.skuid
-      }).then((data) => {
-        this.findGoodOnlook({ id: options.id }, data)
-      })
-      .catch(err => {
-        Toast.error(err.toString())
-      })
+      this.fetchData(options)
     }
   },
   handleCheckoutOriginalPrice: function(e) {
@@ -49,14 +44,15 @@ Page({
   findGoodOnlook: function (options, detailGood){
     GoodService.findGoodOnlook(options)
       .then(data => {
-        // const good = data
         const newGood = Object.assign({}, detailGood, data)
-        const deadline = new Date(newGood.beginTime).getTime();
+        const deadline = new Date(newGood.beginTime).getTime()
         const now = new Date().getTime();
         const tmp = deadline - now;
-
         newGood.swiperImgs = detailGood.imagePath.split(',')
-        newGood.isGrabbing = tmp <= 0;
+
+        // 如果状态不为1，中间显示抢购结束，如果getOrderno不为空，底部中间显示已购买，否则显示直接购买按钮
+        // newGood.isGrabbing = newGood.status !== 2 && tmp <= 0
+
         // Object.keys(newGood).forEach((goodKey) => {
         //   let propertyValue = newGood[goodKey]
         //   // const isPrice = goodKey.includes('price') || goodKey.includes('Price')
@@ -65,38 +61,71 @@ Page({
         //     propertyValue = a.toFixed(2)
         //   }
         // });
-        this.setData({ good: newGood }, () => {
-          if (!newGood.isGrabbing) {
-            this.calculateCountDownTime()
-          }
-        })
+
+        this.calculateCountDownTime(newGood)
       })
       .catch(err => {
         Toast.error(err.toString())
       })
   },
 
-  calculateCountDownTime: function () {
-    const good = this.data.good;
-    const timeInterval = setInterval(() => {
-      const deadline = new Date(good.beginTime).getTime();
-      const now = new Date().getTime();
-      const tmp = deadline - now;
-      if (tmp < 0) {
-        clearInterval(timeInterval)
-        good.isGrabbing = true;
-      }
-      else {
-        good.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        good.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60));
-        good.seconds = Math.floor((tmp % (1000 * 60)) / 1000);
-      }
-      this.setData({ good })
-    }, 1000);
+  calculateCountDownTime: function (good) {
+    const { beginTime, lastCalcPriceTime, timespan, skuid, id, currentprice, downprice, minPrice, status } = good
+    const _beginTime = beginTime.replace(/-/g, '/')
+    const begin = Date.parse(_beginTime)
+
+    const _lastCalcPriceTime = lastCalcPriceTime.replace(/-/g, '/')
+    const lastCalcute = Date.parse(_lastCalcPriceTime)
+    
+    const now = new Date().getTime()
+    const nextPrice = currentprice - downprice
+
+    good.isGrabbing = now > begin && status !== 2
+    good.nextPrice = nextPrice < minPrice ? minPrice : nextPrice
+  
+    if (good.isGrabbing) {
+      const grabbingInterval = setInterval(() => {
+        const current = new Date().getTime()
+        const tmp = lastCalcute + timespan * 60000 - current
+        if (tmp < 0) {
+          clearInterval(grabbingInterval)
+          this.fetchData({ skuid, id})
+        }
+        else {
+          good.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          good.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60))
+          good.seconds = Math.floor((tmp % (1000 * 60)) / 1000)
+          this.setData({ good, firstRender: false }, () => {
+            if (this.data.spinShow) {
+              this.setData({spinShow: false})
+            }
+          })
+        }
+      }, 1000)
+    }
+    else {
+      this.setData({ good, firstRender: false }, () => {
+        this.setData({spinShow: false})
+      })
+    }
   },
 
   onShow: function() {
-    this.onLoad()
+    if (!this.data.firstRender) {
+      this.onLoad()
+    }
+  },
+
+  fetchData(options) {
+    GoodService.getGoodDetail({
+      id: options.skuid
+    })
+    .then((data) => {
+      this.findGoodOnlook({ id: options.id }, data)
+    })
+    .catch(err => {
+      Toast.error(err.toString())
+    })
   },
 
   bindDetailTap: function (e) {

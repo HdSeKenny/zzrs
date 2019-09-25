@@ -6,7 +6,7 @@ function login(data) {
 }
 
 function getUserMessages(data) {
-  return request.post('/app/transmessage/findTransMessageByUserId', data)
+  return request.post('/wechat/transmessage/findTransMessageByUserId', data)
 }
 
 function getUserInfo(res) {
@@ -33,8 +33,15 @@ function addUserContact(data) {
 }
 
 function findBizUserContactByUser(data) {
-  return request.post('/wechat/user/findBizUserContactByUser', data)
-  
+  return request.post('/wechat/user/findBizUserContactByUser', data) 
+}
+
+function getUserLeavingMessages(data) {
+  return request.post('/wechat/bizLeavingMessage/findLeavingMessageByUser', data) 
+}
+
+function getUserOrder(data) {
+  return request.post('/wechat/order/findMyOrder', data) 
 }
 
 module.exports = {
@@ -44,5 +51,7 @@ module.exports = {
   getUserDefaultAddress,
   findCurrentUser,
   addUserContact,
-  findBizUserContactByUser
+  findBizUserContactByUser,
+  getUserLeavingMessages,
+  getUserOrder
 }

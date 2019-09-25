@@ -1,26 +1,107 @@
-.avatar-bg {
-  height: 100px;
-  background: #EC5D29;
-  text-align: center;
-  font-size: 13px;
-  padding: 30px;
-  color: #ffff;
+.me {
+  height: 100%;
 }
 
-.avatar-bg .avatar {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-  border-radius: 50%;
+.avatar-bg {
+  height: 45%;
+  text-align:center;
+  font-size:15px;
+  font-weight: bold;
+  color:#ffff;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+}
+
+.avatar-wrapper {
+  margin-top: -57%;
+}
+
+.avatar {
+  width:60px;
+  height:60px;
+  margin:10px 0;
+  border-radius:50%;
+  z-index:2;
+  position:relative;
+}
+
+.me-background {
+  width: 100%;
+}
+
+.avatar-background {
+  opacity:0.3;
+  width:50%;
+  position:absolute;
+  left:25%;
+  height:25%;
+  z-index:1;
+}
+
+.empty-box {
+  height:28px;
+  position:absolute;
+  width:36%;
+  left:33%;
+  top:27%;
+}
+
+.empty-box-text {
+  color:blue;
+  position:absolute;
+  left:35.5%;
+  top:28%;
+  font-size:12px;
 }
 
 .avatar-bg .text {
   display: block;
 }
 
-.menu image {
-  width: 80px;
-  height: 25px;
+.menu {
+  height: 55%;
+  padding: 0 10%;
+}
+
+.menu .v-line {
+  position:absolute;
+  left:50%;
+  width:2px;
+  height:50%;
+  top:46%;
+}
+
+.menu .h-line-1,
+.menu .h-line-2 {
+  width: 80%;
+  height: 2px;
+  position: absolute;
+}
+
+.menu .h-line-1 {
+  top: 62%;
+}
+
+.menu .h-line-2 {
+  top: 82%;
+}
+
+.menu .menu-icons {
+  height: 100%;
+}
+
+.menu .menu-icons .icon-row {
+  height: 33%;
+}
+
+.menu .menu-icons .icon-col {
+  text-align: center;
+  margin-top:5%;
+}
+
+.menu .menu-icons image {
+  width: 65px;
+  height: 65px;
 }
 
 .menu .menu-link-cell {

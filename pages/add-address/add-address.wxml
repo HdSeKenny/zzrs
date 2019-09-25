@@ -1,4 +1,5 @@
 <view class="container add-address-page">
+  <i-toast id="toast" />
   <i-input i-class="add-address-input name" value="{{address.name}}" autofocus type="text" maxlength="50" placeholder="收货人姓名" bind:change="bindNameInput"/>
   <i-input i-class="add-address-input phone" value="{{address.phone}}" type="number" maxlength="13" placeholder="手机号码" bind:change="bindPhoneInput" />
   <i-input i-class="add-address-input district" value="{{address.areaString}}" type="text" maxlength="50" placeholder="所在地区" bindtap="translate" />

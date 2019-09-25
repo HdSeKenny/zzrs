@@ -1,19 +1,15 @@
-.cart {
-  background: #eee;
-}
-
 .cart .left {
-  width: 16%;
+  width: 22%;
   float: left;
 }
 
 .cart .left image {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 }
 
 .cart .right {
-  width: 84%;
+  width: 78%;
   display: inline-block;
 }
 
@@ -21,21 +17,58 @@
   height: 32px;
 }
 
+.cart .name-row .name {
+  font-weight: bold;
+}
+
+.cart .lowest-row {
+  margin-top: 8px;
+}
+
+.cart .good-tag {
+  color: #FFFFFF;
+  background: #EC5D29;
+  font-size: 13px;
+  border-radius: 5px;
+
+  padding: 3px 5px;
+  margin-bottom: -25px;
+  float: left;
+  position: relative;
+  z-index: 1;
+}
+
+.cart .order-wraper {
+  clear: left;
+  padding: 5px;
+}
+
 .cart .tag-btn {
-  font-size: 8px;
+  font-size: 11px;
   float: right;
   color: #ffffff;
   vertical-align:middle;
   background: #EC5D29;
 }
 
+.cart .tag-btn.stopped {
+  background: #999999;
+  color: #FFFFFF;
+}
+
+.cart .orders {
+  padding: 5px 15px;
+}
 .cart .order-block {
   padding: 10px;
   margin-bottom: 5px;
   background: #ffffff;
-  font-size: 13px;
+  font-size: 14px;
+  /* border: 1px solid #eee; */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
 }
 
 .cart .looker-num {
   float: right;
 }
+    

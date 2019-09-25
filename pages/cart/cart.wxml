@@ -1,18 +1,28 @@
 <view class='container cart'>
   <i-toast id="toast" />
+  <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
   <view wx:if="{{hasUserInfo}}">
-    <view class='order-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item.skuid}}">
-      <view class='left'>
-        <image src="{{item.goodimg}}"></image>
+    <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
+    <view class='orders' wx:if="{{orders.length}}">
+      <view class='order-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item}}">
+        <view class="good-tag" wx:if="{{item.status === 0}}">已取消</view>
+        <view class='order-wraper'>
+          <view class='left'>
+            <image src="{{item.goodimg}}"></image>
+          </view>
+          <view class='right'>
+            <p class="block name-row">
+              <span class="name">{{item.goodname}}</span> <button class="{{item.statusClasses}}">{{item.statusText}}</button>
+            </p>
+            <p class="block lowest-row">最低价格：<span class="price">￥ {{item.minPrice}}</span>
+              <span class="looker-num">围观人数：{{item.lookercount}}</span>
+            </p>
+          </view>      
+        </view>
       </view>
-      <view class='right'>
-        <p class="block name-row">
-          {{item.goodname}} <button class="tag-btn">正在开枪</button>
-        </p>
-        <p class="block lowest-row">最低价格：<span class="price">￥ {{item.minPrice}}</span>
-          <span class="looker-num">围观人数：{{item.lookercount}}</span>
-        </p>
-      </view>
+    </view>
+    <view wx:if="{{!orders.length && !spinShow}}">
+      <image src="/public/images/no_look_message.png" class='no-look-msg' mode="aspectFit"></image>
     </view>
   </view>
 </view>

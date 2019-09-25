@@ -1,2 +1,26 @@
-<!--pages/order-history/order-history.wxml-->
-<text>购买记录</text>
+<view class='container order-history'>
+  <i-toast id="toast" />
+  <view wx:if="{{hasUserInfo}}">
+    <view class='order-block' wx:for="{{orders}}" wx:key="{{item.id}}">
+      <view class='date'>
+        <text>{{item.createTime}}</text>
+      </view>
+      <view class='good'>
+        <view class='left'>
+          <image src="{{item.productlogo}}"></image>
+        </view>
+        <view class='right'>
+          <p class="block name-row">
+            {{item.productname}} <button class="tag-btn">{{item.statusText}}</button>
+          </p>
+          <p class="block lowest-row"><span class="price">￥ {{item.orderprice}}</span>
+          </p>
+        </view>
+      </view>
+      <view class='message'>
+        <text>{{item.receivername}} {{item.receiverprovince}}{{item.receivercity}}{{item.receiverarea}}{{item.receiveraddress}} </text>
+        <text>{{item.receivertel}}</text>
+      </view>
+    </view>
+  </view>
+</view>

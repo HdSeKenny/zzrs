@@ -1,1 +1,59 @@
-/* pages/order-history/order-history.wxss */
+/* pages/message/message.wxss */
+.order-history {
+  padding: 10px;
+}
+
+.order-block {
+  font-size: 15px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+}
+
+.order-block .date {
+  padding: 2px 6px;
+  text-align: right;
+  font-size: 13px;
+  color: #999999;
+  border-bottom: 1px solid #eee; 
+}
+
+.order-block .good {
+  padding: 10px;
+}
+
+.order-block .left {
+  width: 16%;
+  float: left;  
+}
+
+.order-block .left image {
+  width: 50px;
+  height: 50px;
+}
+
+.order-block .right {
+  width: 84%;
+  height: 50px;
+  display: inline-block;
+}
+
+.order-block .name-row {
+  font-size: 14px;
+  height: 30px;
+}
+
+.order-block .tag-btn {
+  font-size: 11px;
+  margin-top: 10px;
+  float: right;
+  color: #ffffff;
+  vertical-align:middle;
+  background: #EC5D29;
+}
+
+.order-block .message {
+  padding: 4px 6px;
+  font-size: 13px;
+  color: #999999;
+  border-top: 1px solid #eee; 
+}

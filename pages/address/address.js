@@ -10,6 +10,7 @@ Page({
   data: {
     isFromOrder: false,
     hasUserInfo: true,
+    firstRender: true,
     addresses: []
   },
 
@@ -27,23 +28,29 @@ Page({
     }).then((data) => {
       if (!app.globalData.userInfo) {
         return this.setData({
-          hasUserInfo: false
+          hasUserInfo: false,
+          firstRender: false
         }, () => {
-          // Toast.warning('请先登录')
+          Toast.warning('请先登录')
         })
       }
 
+      const dataOptions = {
+        firstRender: false
+      }
       if (options && options.isOrder) {
-        this.setData({
-          isFromOrder: true
-        });
+        dataOptions.isFromOrder = true
       }
 
-      const addresses = (data.records || []).map((record) => {
+      dataOptions.addresses = (data.records || []).map((record) => {
         record.tagName = record.name.substring(0, 1)
+        record.province = record.province || ''
+        record.city = record.city || ''
+        record.area = record.area || ''
+        record.address = record.address || ''
         return record
       })
-      this.setData({ addresses })
+      this.setData(dataOptions)
     })
   },
 
@@ -51,20 +58,19 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    this.onLoad()
-    this.onReady()
+    if (!this.data.firstRender) {
+      this.onLoad()
+    }
   },
 
   onReady: function () {
-    if (!this.data.hasUserInfo) {
-      Toast.warning('请先登录')
-    }
+
   },
   /**
    * Lifecycle function--Called when page hide
    */
   onHide: function () {
-
+    Toast.hide()
   },
 
   /**

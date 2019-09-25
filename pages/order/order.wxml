@@ -22,19 +22,22 @@
         <span class="">{{good.goodname}}</span>
       </view>
           <view>
-      <span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span>
+      <span class="price">￥{{isLooker ? good.lookAmount : good.purchaseprice}}</span>
       <span class="number">X 1</span>
     </view>
     </view>
   </view>
   <view class="options">
-    <view class='sale' wx:if="{{!isLooker}}">优惠券：<span class="price">￥ 0</span></view>
+    <view class='sale' wx:if="{{!isLooker}}">
+      <i-cell i-class="menu-link-cell coupon-label">优惠券: </i-cell>
+      <i-cell i-class="menu-link-cell coupon" bind:click="onUserCoupon">使用优惠券</i-cell>
+    </view>
     <view class='sum'>
-      共1件商品 小计：<span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span>
+      共1件商品 小计：<span class="price">￥{{isLooker ? good.lookAmount : good.purchaseprice}}</span>
     </view>
   </view>
   <view class="checkout">
-    <p class="sum">合计金额：<span class="price">￥{{isLooker ? 0 : good.purchaseprice}}</span></p>
+    <p class="sum">合计金额：<span class="price">￥{{isLooker ? good.lookAmount : good.purchaseprice}}</span></p>
     <p class="pay-btn" bindtap="onPayOrder">微信支付</p>
   </view>
 </view>
