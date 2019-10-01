@@ -8,7 +8,10 @@ Page({
 
   data: {
     good: null,
-    address: null
+    address: null,
+    coupon: null,
+    spinShow: true,
+    firstRender: true
   },
 
   onLoad: function (options) {
@@ -18,10 +21,31 @@ Page({
       GoodService.weChatFindGoodOnlook({ id }),
       UserService.getUserDefaultAddress()
     ]).then((data) => {
+      const good = data[0]
+      const isLooker = isLooker === '1'
+      const { lookAmount, purchaseprice } = good
+      good.displayPrice = isLooker ? lookAmount : purchaseprice
+      
+      const { coupon } = this.data
+      const discountPrice = coupon ? (purchaseprice - coupon.minusamount) : purchaseprice
+      good.sumPrice = isLooker ? lookAmount : discountPrice
+
+      Object.keys(good).forEach(key => {
+        if (key.includes('price') || key.includes('Price')) {
+          const price = good[key]
+          const intPrice = parseInt(price)
+          const decimalPrice = intPrice.toFixed(2)
+          good[key] = decimalPrice
+        }
+      })
+
       this.setData({
-        good: data[0],
+        good,
         address: data[1],
-        isLooker: isLooker === '1'
+        isLooker,
+        firstRender: false
+      }, () => {
+        this.setData({spinShow:false})
       })
     })
   },
@@ -96,7 +120,26 @@ Page({
   },
   onUserCoupon() {
     wx.navigateTo({
-      url: '../coupon/coupon'
+      url: '../coupon/coupon?is_order=1'
     })
+  },
+  
+  onShow() {
+    if (this.data.firstRender) {return}
+    const { coupon, good, isLooker } = this.data
+    const { lookAmount, purchaseprice } = good
+    const discountPrice = coupon ? (purchaseprice - coupon.minusamount) : purchaseprice
+    good.sumPrice = isLooker ? lookAmount : discountPrice
+
+    Object.keys(good).forEach(key => {
+      if (key.includes('price') || key.includes('Price')) {
+        const price = good[key]
+        const intPrice = parseInt(price)
+        const decimalPrice = intPrice.toFixed(2)
+        good[key] = decimalPrice
+      }
+    })
+
+    this.setData({good})
   }
 })

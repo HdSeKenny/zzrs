@@ -1,2 +1,58 @@
-<!--pages/coupon/coupon.wxml-->
-<text>pages/coupon/coupon.wxml</text>
+ <wxs module="Util" src="../../utils/util.wxs"></wxs>
+ <wxs module="couponUtil" >
+  var getValidTimeStr = function (days, endTime, type) {
+    var str = ''
+    if (type === 1) {
+    
+    }
+    else if (type === 2) {
+      str = '有效期:' + days + '天'
+    }
+    else if (type === 3) {
+      str = '永久有效'
+    }
+    return str
+  }
+
+  var getTypeStr = function (type) {
+    var str = ''
+    if (type === 1) {
+      str = '满减卷'
+    }
+    else if (type === 2) {
+      str = '无门槛直减卷'
+    }
+    else if (type === 3) {
+      str = '折扣卷'
+    }
+    return str
+  }
+
+  module.exports = {
+    getValidTimeStr: getValidTimeStr,
+    getTypeStr: getTypeStr
+  }
+ </wxs>
+
+<view class='container'>
+  <i-toast id="toast" />
+  <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
+  <view class="coupons-wrapper" wx:if="{{hasUserInfo}}">
+    <view class='coupon-block' wx:for="{{coupons}}" wx:key="{{item.id}}">
+      <i-row>
+        <i-col span="6" i-class="left">
+          <view class="price">¥ {{Util.keppDecimalSpace(item.minusamount, 2)}}</view>
+        </i-col>
+        <i-col span="13">
+          <view class='name'>{{item.couponname}}</view>
+          <view class='valid-time'>{{couponUtil.getValidTimeStr(item.validdays, item.validendtime, item.validtype)}}</view>
+          <view class='description'>{{couponUtil.getTypeStr(item.type)}}</view>
+          <view class='description'>{{item.desc}}</view>
+        </i-col>
+        <i-col span="5" i-class="right">
+          <i-button class="btn-use" bindtap="onUseCoupon" size="small" data-id="{{item}}">立即使用</i-button>
+        </i-col>
+      </i-row>
+    </view>
+  </view>
+</view>

@@ -47,7 +47,7 @@
 }
 
 .empty-box-text {
-  color:blue;
+  color:#212b66;
   position:absolute;
   left:35.5%;
   top:28%;
@@ -100,10 +100,51 @@
 }
 
 .menu .menu-icons image {
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
 }
 
 .menu .menu-link-cell {
   line-height: 0.4;
+}
+
+
+.modals{position:fixed; z-index: 999; top:0; left: 0; right:0; bottom: 0;}
+.modals-cancel{position:absolute; z-index:1000; top:0; left: 0; right:0; bottom: 0; background-color: rgba(0,0,0,.5);}
+.bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:180rpx; background-color: #fff;}
+.bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}
+
+.share-imgs image {
+  width: 40px;
+  height: 40px;
+}
+
+.share-imgs .share-icon-col {
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+}
+
+.share-imgs .label {
+  display: block;
+}
+
+.share-imgs .friends-circle {
+  height:32px;
+  width:32px;
+  margin-bottom:5px;
+  margin-top:3px;
+}
+
+.share-firend-btn {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height:unset;
+  border: none;
+  background: #ffffff;
+}
+
+.share-firend-btn:after {
+  border: none;
 }

@@ -48,8 +48,31 @@
               <image src="/public/images/帮助中心.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
-          <i-col span="12" i-class="icon-col" bind:click="onShareAppMessage">
-            <image src="/public/images/分享好友.png" mode="scaleToFit"></image>
+          <i-col span="12" i-class="icon-col">
+            <button bindtap="showModal" class="share-firend-btn">
+              <image src="/public/images/分享好友.png" mode="scaleToFit"></image>
+            </button>
+          </i-col>
+        </i-row>
+      </view>
+    </view>
+  </view>
+
+  <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+      <view class='share-imgs'>
+        <i-row>
+          <i-col span="5" i-class="share-icon-col">
+            <button open-type='share' class="share-firend-btn">
+              <image src="/public/images/微信好友.png"></image>
+              <p class="label">微信好友</p>
+            </button>
+          </i-col>
+          <i-col span="5" i-class="share-icon-col">
+          
+            <image src="/public/images/朋友圈.png" class='friends-circle'></image>
+            <p class="label">朋友圈</p>
           </i-col>
         </i-row>
       </view>
