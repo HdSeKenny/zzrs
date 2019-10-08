@@ -1,6 +1,6 @@
 /* pages/message/message.wxss */
 .order-history {
-  padding: 10px;
+  padding: 0px 15px;
 }
 
 .order-block {
@@ -48,7 +48,6 @@
   float: right;
   color: #ffffff;
   vertical-align:middle;
-  background: #EC5D29;
 }
 
 .order-block .message {

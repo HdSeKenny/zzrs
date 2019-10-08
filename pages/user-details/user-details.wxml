@@ -16,5 +16,5 @@
     <span class='label'>性别</span>
     <span class="right">{{userInfo.gender === 1 ? '男' : '女'}}</span>
   </view>
-  <button class='log-out' bindtap='logOut'>退出登录</button>
+  <button class='log-out common-bg-color' bindtap='logOut'>退出登录</button>
 </view>

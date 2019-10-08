@@ -16,13 +16,13 @@ Page({
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({title: '订单支付'})
-    const { id, isLooker } = options
+    const { id } = options
     Promise.all([
       GoodService.weChatFindGoodOnlook({ id }),
       UserService.getUserDefaultAddress()
     ]).then((data) => {
       const good = data[0]
-      const isLooker = isLooker === '1'
+      const isLooker = options.isLooker === '1'
       const { lookAmount, purchaseprice } = good
       good.displayPrice = isLooker ? lookAmount : purchaseprice
       

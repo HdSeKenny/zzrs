@@ -3,10 +3,6 @@ const { Toast } = require('../../utils/util.js')
 const app = getApp()
 
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
     coupons: [],
     hasUserInfo: true,

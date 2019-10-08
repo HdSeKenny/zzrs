@@ -5,7 +5,7 @@
   <view wx:if="{{hasUserInfo}}">
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
     <view wx:if="{{messages.length}}">
-      <view class='message-block' wx:for="{{messages}}" wx:key="{{item.id}}">
+      <view class='message-block box-shadow' wx:for="{{messages}}" wx:key="{{item.id}}">
         <view class='date'>
           <text>{{item.transTime}}</text>
         </view>

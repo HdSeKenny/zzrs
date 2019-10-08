@@ -1,41 +1,47 @@
 .cart .left {
-  width: 22%;
+  width: 24%;
   float: left;
 }
 
 .cart .left image {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 
 .cart .right {
-  width: 78%;
+  width: 76%;
   display: inline-block;
 }
 
 .cart .name-row {
-  height: 32px;
+  height: 42px;
+}
+
+.cart .name-row p {
+  display: inline-block;
 }
 
 .cart .name-row .name {
+  font-size: 13px;
   font-weight: bold;
+  width: 70%;
+  float: left;
+}
+
+.cart .name-row .tag-btn {
+  float: right;
+  vertical-align: middle;
 }
 
 .cart .lowest-row {
   margin-top: 8px;
 }
 
-.cart .good-tag {
-  color: #FFFFFF;
-  background: #EC5D29;
-  font-size: 13px;
-  border-radius: 5px;
-
+.cart .tag {
   padding: 3px 5px;
   margin-bottom: -25px;
   float: left;
   position: relative;
-  z-index: 1;
 }
 
 .cart .order-wraper {
@@ -43,29 +49,15 @@
   padding: 5px;
 }
 
-.cart .tag-btn {
-  font-size: 11px;
-  float: right;
-  color: #ffffff;
-  vertical-align:middle;
-  background: #EC5D29;
-}
-
-.cart .tag-btn.stopped {
-  background: #999999;
-  color: #FFFFFF;
-}
-
 .cart .orders {
   padding: 5px 15px;
 }
-.cart .order-block {
+
+.cart .item-block {
   padding: 10px;
   margin-bottom: 5px;
-  background: #ffffff;
   font-size: 14px;
-  /* border: 1px solid #eee; */
-  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
+  background: #ffffff;
 }
 
 .cart .looker-num {

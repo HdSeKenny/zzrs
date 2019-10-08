@@ -67,8 +67,9 @@
   position:absolute;
   left:50%;
   width:2px;
-  height:50%;
+  height:52%;
   top:46%;
+  z-index: 1;
 }
 
 .menu .h-line-1,

@@ -40,6 +40,10 @@ function getUserLeavingMessages(data) {
   return request.post('/wechat/bizLeavingMessage/findLeavingMessageByUser', data) 
 }
 
+function findTransMessageByUserId(data) {
+  return request.post('/wechat/transmessage/findTransMessageByUserId', data)
+}
+
 function getUserOrder(data) {
   return request.post('/wechat/order/findMyOrder', data) 
 }
@@ -53,5 +57,6 @@ module.exports = {
   addUserContact,
   findBizUserContactByUser,
   getUserLeavingMessages,
-  getUserOrder
+  getUserOrder,
+  findTransMessageByUserId
 }

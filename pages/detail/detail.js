@@ -62,6 +62,15 @@ Page({
         //   }
         // });
 
+        Object.keys(newGood).forEach(key => {
+          if (key.includes('price') || key.includes('Price')) {
+            const price = newGood[key]
+            const intPrice = parseInt(price)
+            const decimalPrice = intPrice.toFixed(2)
+            newGood[key] = decimalPrice
+          }
+        })
+
         this.calculateCountDownTime(newGood)
       })
       .catch(err => {

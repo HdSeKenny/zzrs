@@ -1,19 +1,21 @@
 <view class='container cart'>
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
+  <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
+  
   <view wx:if="{{hasUserInfo}}">
-    <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
     <view class='orders' wx:if="{{orders.length}}">
-      <view class='order-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item}}">
-        <view class="good-tag" wx:if="{{item.status === 0}}">已取消</view>
+      <view class='item-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item}}">
+        <view class="tag" wx:if="{{item.status === 0}}">已取消</view>
         <view class='order-wraper'>
           <view class='left'>
             <image src="{{item.goodimg}}"></image>
           </view>
           <view class='right'>
-            <p class="block name-row">
-              <span class="name">{{item.goodname}}</span> <button class="{{item.statusClasses}}">{{item.statusText}}</button>
-            </p>
+            <view class="block name-row">
+              <p class="name">{{item.goodname}}</p>
+              <p class="{{item.statusClasses}}">{{item.statusText}}</p>
+            </view>
             <p class="block lowest-row">最低价格：<span class="price">￥ {{item.minPrice}}</span>
               <span class="looker-num">围观人数：{{item.lookercount}}</span>
             </p>

@@ -22,7 +22,7 @@ Page({
       })
     }
     else {
-      UserService.getUserLeavingMessages({
+      UserService.findTransMessageByUserId({
         pageSize: 20,
         pageNum: 1
       })

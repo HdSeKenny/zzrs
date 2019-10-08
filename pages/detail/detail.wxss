@@ -1,3 +1,7 @@
+.detail-page {
+  background-color: #FBFCFC;
+}
+
 .good-detail {
   color: #A2ABCC;
 }
@@ -7,17 +11,15 @@
 }
 
 .detail {
-  margin: 30px 50px 15px 50px;
-  padding: 40px 10px 20px;
-  border: 1px solid #eee;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
+  background-color: #FFFFFF;
+  margin: 30px 70px 15px 15px;
+  padding: 30px 5px 10px;
 }
 
-.detail .good-tag {
+.detail .tag {
   padding:5px 15px;
   margin:-40px 0 0px -12px;
   color:#FFFFFF;
-  background:#EC5D29;
   border-radius:5px;
   font-size:13px;
   z-index:1;
@@ -26,7 +28,7 @@
 }
 
 .detail-text {
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
   padding: 10px !important;
 }
@@ -36,7 +38,6 @@
   font-weight: bold;
   text-align: center;
   display: block;
-  clear: left;
 }
 
 .brand-img {
@@ -47,26 +48,32 @@
   height: 150px;
 }
 
+.detail .btn-row {
+  margin-bottom: 50px;
+}
+
 .detail button {
-  width:100px;
-  height:25px;
+  width: 95px;
+  height: 32px;
   font-size: 13px;
-  background: #EC5D29;
-  line-height:25px;
+  line-height: 32px;
   margin: 10px auto;
   border: none;
+  border-radius:3px;
+  box-shadow: unset;
 }
+
 .detail button.disabled {
   background: #999999;
   color: #FFFFFF;
 }
 
 .left-time {
-  font-size: 15px;
   color: #333;
+  font-size: 15px;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .left-time .unit {
@@ -75,8 +82,9 @@
 }
 
 .params {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
+  margin: 20px 0 0 0;
 }
 
 .params span {
@@ -88,12 +96,14 @@
 }
 
 .checkout button {
-  height: 35px;
-  font-size: 14px;
-  background: #A2ABCC;
-  line-height:35px;
+  width:120px;
+  height:40px;
+  font-size: 15px;
+  line-height:40px;
+  margin:10px auto;
   border: none;
-  border-radius: 5px;
+  border-radius:3px;
+  box-shadow: unset;
 }
 
 .checkout .i-btn-small.i-btn-circle {
@@ -101,5 +111,18 @@
 }
 
 .checkout {
-  margin: 0 40px;
+  margin: 0 10px;
+}
+
+.checkout .btn-grid {
+  padding: 10px;
+}
+
+.detail-background {
+  position:absolute;
+  z-index:1;
+  width:90px;
+  right:13px;
+  height:242px;
+  top:175px;
 }

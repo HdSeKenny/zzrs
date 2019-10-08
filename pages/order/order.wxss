@@ -65,12 +65,6 @@
   border-bottom: 1px solid #f9f9f9;
 }
 
-.order .price {
-  color: #EC5D29;
-  font-size: 14px;
-  font-weight: bold;
-}
-
 .order-detail .number {
   float: right;
   font-size: 11px;

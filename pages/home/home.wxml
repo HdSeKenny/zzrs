@@ -14,7 +14,7 @@
       bindtap="bindDetailTap"
       data-id="{{item}}"
     >
-      <view class="good-tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
+      <view class="tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
       <view class='count-down' wx:else>
         {{item.hours}}<span class="unit">时</span>
         {{item.minutes}}<span class="unit">分</span>

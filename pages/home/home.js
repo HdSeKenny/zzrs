@@ -43,6 +43,15 @@ Page({
           const tmp = beginTimeTamp - now
           g.isGrabbing = tmp <= 0
           g.classes = `item-block ${idx % 2 !== 0 ? 'right-one' : ''}`
+
+          Object.keys(g).forEach(key => {
+            if (key.includes('price') || key.includes('Price')) {
+              const price = g[key]
+              const intPrice = parseInt(price)
+              const decimalPrice = intPrice.toFixed(2)
+              g[key] = decimalPrice
+            }
+          })
         })
         this.setData({ goods, sliders, firstRender: false }, () => {
           this.setData({ spinShow: false })

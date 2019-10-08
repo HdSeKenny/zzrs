@@ -43,7 +43,6 @@
   float: right;
   color: #ffffff;
   vertical-align:middle;
-  background: #EC5D29;
 }
 
 .message-block .message {

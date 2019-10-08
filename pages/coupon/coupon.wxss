@@ -21,7 +21,6 @@
 .coupon-block .btn-use {
   font-size: 12px;
   color: #ffffff;
-  background: #EC5D29;
   padding: 3px 5px;
   border: none;
   border-radius: 5px; 
