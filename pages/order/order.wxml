@@ -1,7 +1,7 @@
 <view class="container order">
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
-  <view class="order-address">
+  <view class="order-address" wx:if="{{!isLooker}}">
     <i-cell-group>
       <span>收货人：
         <span class="bold">{{address.name}}</span>

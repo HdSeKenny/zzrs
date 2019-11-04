@@ -16,7 +16,6 @@
     "pages/help-answer/help-answer",
     "pages/user-details/user-details",
     "pages/authorize/authorize",
-    "pages/home/home",
     "pages/choose-address/choose-address",
     "pages/coupon/coupon",
     "pages/tab-bar/tab-bar"
@@ -26,7 +25,7 @@
     "selectedColor": "#333",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/index/index",
         "iconPath": "public/images/home_out.png",
         "selectedIconPath": "public/images/home_on.png",
         "text": "首页"

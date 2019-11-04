@@ -6,23 +6,21 @@
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
     <view wx:if="{{messages.length}}">
       <view class='message-block box-shadow' wx:for="{{messages}}" wx:key="{{item.id}}">
-        <view class='date'>
-          <text>{{item.transTime}}</text>
+        <view class='status'>
+          <image src="{{item.orderno ? '/public/images/success.png' : '/public/images/fail.png'}}" class='status-icon' mode="scaleToFit"></image>
+          <!-- <p class="status-text-row"> -->
+            <p class="text">{{item.orderno ? '抢购成功' : '抢购失败'}}</p>
+            <p class="date">{{item.transTime}}</p>
+          <!-- </p> -->
         </view>
         <view class='good'>
           <view class='left'>
             <image src="{{item.goodimg}}"></image>
           </view>
           <view class='right'>
-            <p class="block name-row">
-              {{item.goodname}} <button class="tag-btn">抢购结束</button>
-            </p>
-            <p class="block lowest-row"><span class="price">￥ {{item.minPrice}}</span>
-            </p>
+            <p class="block name-row">{{item.goodname}} <span class="order-price">￥ {{item.orderPrice}}</span></p>
+            <p class="message">{{item.message}}</p>
           </view>
-        </view>
-        <view class='message'>
-          <text>{{item.message}}</text>
         </view>
       </view>
     </view>

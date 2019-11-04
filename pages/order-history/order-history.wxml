@@ -12,7 +12,8 @@
         </view>
         <view class='right'>
           <p class="block name-row">
-            {{item.productname}} <button class="tag-btn">{{item.statusText}}</button>
+            {{item.productname}}
+            <view class="tag">{{item.statusText}}</view>
           </p>
           <p class="block lowest-row"><span class="price">￥ {{item.orderprice}}</span>
           </p>

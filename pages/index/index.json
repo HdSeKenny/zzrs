@@ -7,8 +7,6 @@
     "i-cell": "../../iview/dist/cell/index",
     "i-tab-bar": "../../iview/dist/tab-bar/index",
     "i-tab-bar-item": "../../iview/dist/tab-bar-item/index",
-    "i-modal": "../../iview/dist/modal/index",
-    "auth": "../authorize/authorize"
-  },
-  "navigationBarTitleText": "授权登录"
+    "i-spin": "../../iview/dist/spin/index"
+  }
 }

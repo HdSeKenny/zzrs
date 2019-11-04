@@ -51,12 +51,12 @@ App({
         if (this.globalData.needGetInfo) {
           this.getServerUserInfo(res)
         }
-        else {
-          console.log('wxGetUserInfo  home')
-          wx.switchTab({
-            url: '/pages/home/home'
-          })
-        }
+        // else {
+        //   console.log('wxGetUserInfo  home')
+        //   wx.switchTab({
+        //     url: '/pages/index/index'
+        //   })
+        // }
       },
       fail: (err) => {
         console.log('error', err)
@@ -71,10 +71,6 @@ App({
       wx.setStorageSync('open_params', {
         openId: data.openId,
         unionId: data.unionId
-      })
-
-      wx.switchTab({
-        url: '/pages/home/home'
       })
     })
   },

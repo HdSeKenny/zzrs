@@ -1,7 +1,7 @@
 /* pages/order/order.wxss */
 .order {
   background: #eee;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   font-size: 14px;
   /* display: flex;
   flex-flow: row wrap; */
@@ -21,6 +21,8 @@
   background: #ffffff;
   padding: 10px 15px;
   min-height: 50px;
+  margin-bottom:10px;
+  border-top: 1px solid #f9f9f9;
 }
 
 .order-address .phone {
@@ -37,7 +39,8 @@
 
 .order-detail {
   background: #ffffff;
-  margin-top: 5px;
+  /* margin-top: 5px; */
+  border-top: 1px solid #f9f9f9;
 }
 
 .order-detail image {
@@ -72,7 +75,7 @@
 
 .options {
   background: #ffffff;
-  padding: 0px 4% 10px 4%;
+  padding: 10px 4% 10px 4%;
 }
 .options .sale {
   margin-top: 5px;

@@ -1,53 +1,77 @@
 /* pages/message/message.wxss */
 .message-block {
   font-size: 13px;
-  margin: 5px;
-  border: 1px solid #eee;
-}
-
-.message-block .date {
-  text-align: right;
-  font-size: 11px;
-  color: #999999;
-  border-bottom: 1px solid #eee; 
-}
-
-.message-block .good {
+  margin: 10px;
   padding: 10px;
 }
 
+.message-block .status {
+  /* padding: 10px; */
+  display: flex;
+  align-items: center;
+}
+
+.message-block .status .status-icon {
+  width: 60rpx;
+  height: 55rpx;
+}
+
+.message-block .status .text {
+  color: #FFA101;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.message-block .status .date {
+  position: absolute;
+  right: 20px;
+  color: #333;
+  font-size: 13px;
+}
+
+.message-block .good {
+  margin-top: 15px;
+}
+
 .message-block .left {
-  width: 16%;
+  width: 18%;
   float: left;  
 }
 
 .message-block .left image {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 }
 
 .message-block .right {
-  width: 84%;
+  width: 81%;
   height: 50px;
+  margin-left: 1%;
   display: inline-block;
 }
 
 .message-block .name-row {
-  font-size: 12px;
+  font-size: 15px;
   height: 30px;
 }
 
-.message-block .tag-btn {
+.message-block .name-row .order-price {
+  font-size: 12px;
+  color: #999999;
+  margin-left: 20px;
+}
+
+/* .message-block .tag {
   font-size: 9px;
   margin-top: 10px;
   float: right;
   color: #ffffff;
   vertical-align:middle;
-}
+} */
 
 .message-block .message {
-  padding: 5px;
-  font-size: 11px;
+  /* padding: 5px; */
+  font-size: 12px;
   color: #999999;
-  border-top: 1px solid #eee; 
 }

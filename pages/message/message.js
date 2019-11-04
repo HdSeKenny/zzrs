@@ -27,6 +27,17 @@ Page({
         pageNum: 1
       })
       .then(data => {
+        data.records.forEach((message) => {
+          Object.keys(message).forEach(key => {
+            if (key.includes('price') || key.includes('Price')) {
+              const price = message[key]
+              const intPrice = parseInt(price)
+              const decimalPrice = intPrice.toFixed(2)
+              message[key] = decimalPrice
+            }
+          })
+        })
+
         this.setData({
           hasUserInfo: true,
           firstRender: false,
