@@ -6,8 +6,19 @@
     <i-input i-class="add-address-input phone" value="{{address.phone}}" type="number" maxlength="13" placeholder="手机号码" bind:change="bindPhoneInput" />
     <i-input i-class="add-address-input district" value="{{address.areaString}}" type="text" maxlength="50" placeholder="所在地区" bindtap="translate" />
     <i-input i-class="add-address-input address" value="{{address.detail}}" type="textarea" placeholder="请输入详细地址" maxlength="50" bind:change="bindDetailInput" />
-    <i-button i-class="save-btn" bind:click="onSaveAddress" size="small">保存</i-button>
+
+    <i-cell-group class="defaultflag-group">
+      <view class="i-checkbox" catchtap="checkboxChange">
+        <i-cell i-class="i-checkbox-cell">
+          <label>
+            <radio value="设为默认地址" checked="{{address.defaultflag === '1' || address.defaultflag === 1}}" color="#212b66" class="i-checkbox-radio right" />
+            <view class="i-checkbox-title">设为默认地址</view>
+          </label>
+        </i-cell>
+      </view>
+    </i-cell-group>
   </view>
+<i-button i-class="save-btn" bind:click="onSaveAddress" size="small">保存</i-button>
 <!--modelTest.wxml-->
 <import src="../choose-address/model/model.wxml"/>
 <view class="infoText">{{province}} {{city}} {{county}}</view>

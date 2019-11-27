@@ -1,0 +1,7 @@
+<!--pages/guide/guide.wxml-->
+<view class='guide'>
+  <!-- <scroll-view class='contents'>
+    <image lazy-load="true" src='https://www.cnqiangba.com/assets/img/logo-brand.png' mode="widthFix" />
+  </scroll-view> -->
+  <h1>hello world</h1>
+</view>

@@ -1,4 +1,8 @@
 <!--pages/contact/contact.wxml-->
 <view class='contact'>
-  <text>联系方式：187xxxxxxxx</text>
+  <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
+  <view class='detail'>
+    <p class="bold">联系方式</p>
+    <p>邮箱：zzrs9731@163.com</p>
+  </view>
 </view>

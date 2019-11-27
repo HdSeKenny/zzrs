@@ -1,3 +1,7 @@
+.cart {
+  background-color: #f9f9f9;
+}
+
 .cart .left {
   width: 24%;
   float: left;
@@ -38,7 +42,7 @@
 }
 
 .cart .tag {
-  padding: 3px 5px;
+  padding: 1px 5px;
   margin-bottom: -25px;
   float: left;
   position: relative;
@@ -50,7 +54,7 @@
 }
 
 .cart .orders {
-  padding: 5px 15px;
+  padding: 5px 0px;
 }
 
 .cart .item-block {

@@ -1,5 +1,6 @@
 <view class='container'>
   <i-toast id="toast" />
+  <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
   <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
   <view wx:if="{{hasUserInfo}}" class='order-history'>
     <view class='order-block box-shadow' wx:for="{{orders}}" wx:key="{{item.id}}">
@@ -24,5 +25,8 @@
         <text>{{item.receivertel}}</text>
       </view>
     </view>
+  </view>
+  <view wx:if="{{!orders.length && !spinShow}}">
+    <image src="/public/images/no_message.png" class='no-msg' mode="aspectFit"></image>
   </view>
 </view>

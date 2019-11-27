@@ -1,4 +1,7 @@
 // pages/swiper-details/swiper-details.js
+const GoodService = require('../../services/good')
+const WxParse = require('../../modules/wxParse/wxParse.js')
+
 Page({
 
   /**
@@ -12,8 +15,14 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    this.setData({
-      detailString: options.detail
+    GoodService.getGoodDetail({
+      id: options.skuid
+    })
+    .then((data) => {
+      WxParse.wxParse('article', 'html', data.detail, this, 0);
+    })
+    .catch(err => {
+      Toast.error(err.toString())
     })
   },
 

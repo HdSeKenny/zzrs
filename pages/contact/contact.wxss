@@ -1,5 +1,12 @@
 /* pages/contact/contact.wxss */
 .contact {
   font-size: 13px;
+}
+
+.contact .detail {
   padding: 10px;
+}
+
+.contact .detail p {
+  display: block;
 }

@@ -1,7 +1,8 @@
 @import '../choose-address/model/model.wxss';
 
 .add-address-page .input-wrapper {
-  padding: 0 15px;  
+  padding: 0 15px;
+  margin-bottom: 15px;
 }
 
 .add-address-page .add-address-input {
@@ -9,9 +10,9 @@
   padding-right: 0;
 }
 
-.add-address-page .add-address-input.address {
+/* .add-address-page .add-address-input.address {
   min-height: 100px;
-}
+} */
 
 .add-address-page .add-address-input input,
 .add-address-page .add-address-input textarea {
@@ -20,5 +21,30 @@
 
 .add-address-page .save-btn {
   border: none;
-  color: #333;
+  font-weight:bold;
+  color: #ffff;
+  margin: 5px 15px;
+  background-color:#212b66;
+}
+
+.add-address-page .defaultflag-group {
+  font-size: 15px;
+  line-height: 36px;
+
+}
+
+.add-address-page .defaultflag-group .i-checkbox {
+  border-bottom: 1px solid #eee;
+}
+
+.add-address-page .defaultflag-group .i-checkbox-radio.right{
+  float: right;
+  vertical-align: middle;
+  line-height: 32px;
+}
+
+.add-address-page .defaultflag-group .i-checkbox-radio.right::before,
+.add-address-page .defaultflag-group .i-checkbox-radio.right::after {
+  width: 20px;
+  height: 20px;
 }

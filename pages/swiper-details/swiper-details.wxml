@@ -1,4 +1,5 @@
 <!--pages/swiper-details/swiper-details.wxml-->
 <view class='container'>
-  <text>{{detailString}}</text>
+  <import src="../../modules/wxParse/wxParse.wxml"/>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>

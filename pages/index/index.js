@@ -69,6 +69,11 @@ Page({
       url: `../detail/detail?id=${item.id}&skuid=${item.skuid}`
     })
   },
+  bindGuideTap: function(e) {
+    wx.navigateTo({
+      url: `../guide/guide`
+    })
+  },
 
   onLoad: function () {
     wx.setNavigationBarTitle({ title: '首页' })

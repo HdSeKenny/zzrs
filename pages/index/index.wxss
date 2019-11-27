@@ -1,3 +1,7 @@
+.home-page {
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -37,6 +41,7 @@
   margin: 3%;
   padding: 5px 3%;
   display: inline-block;
+  background-color: #ffffff;
 }
 
 .item-block.right-one {
@@ -89,4 +94,18 @@
 .count-down .unit {
   font-size: 10px;
   font-weight: 400;
+}
+
+.grabbing-monkey {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.home-page .tag {
+  display: flex;
+  align-items:center;
+  width: 65%;
+  font-size: 14px;
+  margin:-6px 0 0px -12px;
 }

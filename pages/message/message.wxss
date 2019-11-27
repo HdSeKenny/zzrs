@@ -1,8 +1,10 @@
 /* pages/message/message.wxss */
+
 .message-block {
   font-size: 13px;
-  margin: 10px;
+  margin: 10px 0px;
   padding: 10px;
+  background-color: #ffffff;
 }
 
 .message-block .status {
@@ -17,7 +19,7 @@
 }
 
 .message-block .status .text {
-  color: #FFA101;
+  color: #F2AA72;
   font-size: 14px;
   font-weight: bold;
   margin-left: 10px;

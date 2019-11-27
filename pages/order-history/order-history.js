@@ -10,7 +10,8 @@ Page({
   data: {
     hasUserInfo: true,
     firstRender: true,
-    orders: []
+    orders: [],
+    spinShow: true
   },
 
   /**
@@ -21,7 +22,8 @@ Page({
     if (!app.globalData.userInfo) {
       return this.setData({
         hasUserInfo: false,
-        firstRender: false
+        firstRender: false,
+        spinShow: false
       }, () => {
         Toast.warning('请先登录')
       })
@@ -106,7 +108,7 @@ Page({
         return record
       })
 
-      this.setData({ orders, firstRender: false })
+      this.setData({ orders, firstRender: false, spinShow: false })
     }).catch((err) => {
       console.log(err)
     })

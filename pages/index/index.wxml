@@ -1,9 +1,9 @@
-<view class="container">
+<view class="home-page">
   <i-spin fix size="large" wx:if="{{spinShow}}" i-class="spinner"></i-spin>
   <swiper indicator-dots="{{indicatorDots}}"
-    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper'>
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper' bindtap="bindGuideTap">
     <block wx:for="{{sliders}}" wx:key="{{index}}">
-      <swiper-item><image src="{{item.imgurl}}" class="slide-image" /></swiper-item>
+      <swiper-item><image src="{{item.imgurl}}" class="slide-image"/></swiper-item>
     </block>
   </swiper>
   <view class='items-wrapper'>
@@ -14,7 +14,9 @@
       bindtap="bindDetailTap"
       data-id="{{item}}"
     >
-      <view class="tag" wx:if="{{item.isGrabbing}}">正在开抢</view>
+      <view class="tag" wx:if="{{item.isGrabbing}}">
+        <image src="/public/images/首页界面切图/正在开抢猴子.png" class="grabbing-monkey"></image>
+       正在开抢</view>
       <view class='count-down' wx:else>
         {{item.hours}}<span class="unit">时</span>
         {{item.minutes}}<span class="unit">分</span>

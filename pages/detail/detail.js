@@ -63,7 +63,8 @@ Page({
         // });
 
         Object.keys(newGood).forEach(key => {
-          if (key.includes('price') || key.includes('Price')) {
+          const isTime = key.includes('Time') || key.includes('time')
+          if ((key.includes('price') || key.includes('Price')) && !isTime) {
             const price = newGood[key]
             const intPrice = parseInt(price)
             const decimalPrice = intPrice.toFixed(2)
@@ -138,8 +139,9 @@ Page({
   },
 
   bindDetailTap: function (e) {
+    const details = this.data.good.detail.replace(/"/g, "'")
     wx.navigateTo({
-      url: `../swiper-details/swiper-details?detail=${this.data.good.detail}`
+      url: `../swiper-details/swiper-details?skuid=${this.data.good.skuid}`
     })
   },
 

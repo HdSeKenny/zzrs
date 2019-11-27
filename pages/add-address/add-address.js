@@ -35,10 +35,11 @@ Page({
       title: hasOptions ? '修改地址' : '增加地址'
     })
     
-    if (Object.keys(options).length) {
-      const { id, name, phone, province, city, area, address } = options
+    if (hasOptions) {
+      const { id, name, phone, province, city, area, address, defaultflag } = options
       // const { id, phone, name, district, detail } = options
       this.setData({
+        hasOptions: true,
         address: {
           id: parseInt(id),
           name,
@@ -46,8 +47,10 @@ Page({
           province,
           city,
           district: area,
+          county: area,
           detail: address,
-          areaString: `${province} ${city} ${area}`
+          areaString: `${province} ${city} ${area}`,
+          defaultflag
         }
       })
     }
@@ -123,7 +126,7 @@ Page({
     const prevAdresses = prevPage.data.addresses
     const currentAddress = this.data.address
     const { name, phone, province, county, detail, defaultflag, city } = currentAddress
-    if (!name || !phone || !province || !county || !detail || !defaultflag || !city) {
+    if (!name || !phone || !province || !county || !detail || !city) {
       return Toast.warning('请填写完整的地址信息')
     }
 
@@ -136,20 +139,33 @@ Page({
       const currentIndex = prevAdresses.findIndex((pa) => pa.id === currentAddress.id)
       prevAdresses[currentIndex] = currentAddress
     }
-    
-    UserService.addUserContact({
+
+    const newAddr = {
       name,
       city,
       phone,
       province,
       area: county,
       address: detail,
-      defaultflag
-    }).then((data) => {
+      defaultflag: parseInt(defaultflag)
+    }
+
+    if (this.data.hasOptions) {
+      newAddr.id = currentAddress.id
+    }
+    
+    UserService.addUserContact(newAddr).then((data) => {
       prevPage.setData({ addresses: prevAdresses })
       wx.navigateBack({ delta: 1 }) 
     }).catch((err) => {
       console.log(err)
     })
+  },
+
+  checkboxChange() {
+    const newAddr = this.data.address
+    const isDefault = newAddr.defaultflag === '1' || newAddr.defaultflag === 1
+    newAddr.defaultflag = isDefault ? 0 : 1
+    this.setData({address: newAddr})
   }
 })

@@ -3,10 +3,10 @@
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
   <view class="good-detail">
     <swiper indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindtap="bindDetailTap">
       <block wx:for="{{good.swiperImgs}}" wx:key="{{index}}">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" />
+          <image src="{{item}}" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>

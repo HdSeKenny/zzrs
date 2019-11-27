@@ -18,7 +18,8 @@
     "pages/authorize/authorize",
     "pages/choose-address/choose-address",
     "pages/coupon/coupon",
-    "pages/tab-bar/tab-bar"
+    "pages/tab-bar/tab-bar",
+    "pages/guide/guide"
   ],
   "tabBar": {
     "color": "#b7bacd",
