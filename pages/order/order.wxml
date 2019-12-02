@@ -15,7 +15,7 @@
 
   <view class="order-detail">
     <view class="left">
-      <image class="good-img" src="{{isLooker ? '/public/images/qiangba_logo.png' : good.goodimg}}" mode="cover"></image>
+      <image class="good-img" src="{{good.goodimg}}" mode="cover"></image>
     </view>
     <view class='right'>
       <view class='name'><span class="">{{good.goodname}}</span></view>

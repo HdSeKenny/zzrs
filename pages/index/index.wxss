@@ -31,10 +31,6 @@
   padding: 10px 15px;
 }
 
-.items-wrapper .tag {
-  margin:-20px 0 0px -12px;
-}
-
 .item-block {
   width: 39%;
   font-size: 14px;
@@ -91,9 +87,14 @@
   opacity: .8;
 }
 
-.count-down .unit {
+.tag .time {
+  font-size: 14px;
+  font-weight: 600;
+}
+.tag .unit {
   font-size: 10px;
   font-weight: 400;
+  margin-right: 3px;
 }
 
 .grabbing-monkey {
@@ -105,7 +106,8 @@
 .home-page .tag {
   display: flex;
   align-items:center;
-  width: 65%;
+  width: 80%;
   font-size: 14px;
-  margin:-6px 0 0px -12px;
+  margin:-5px 0 0px -11px;
+  border-radius: 6px;
 }

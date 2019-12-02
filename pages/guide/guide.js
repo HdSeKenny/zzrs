@@ -1,4 +1,5 @@
 // pages/guide/guide.js
+const WxParse = require('../../modules/wxParse/wxParse.js')
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    const htmlStr = "<div class='guide'><div class='contents'><img src='https://www.cnqiangba.com/assets/img/introduction.jpeg' /></div></div>"
+    WxParse.wxParse('article', 'html', htmlStr, this, 0);
   },
 
   /**

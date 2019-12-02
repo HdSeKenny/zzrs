@@ -45,7 +45,8 @@ Page({
           g.classes = `item-block ${idx % 2 !== 0 ? 'right-one' : ''}`
 
           Object.keys(g).forEach(key => {
-            if (key.includes('price') || key.includes('Price')) {
+            const isTime = key.includes('Time') || key.includes('time')
+            if ((key.includes('price') || key.includes('Price')) && !isTime) {
               const price = g[key]
               const intPrice = parseInt(price)
               const decimalPrice = intPrice.toFixed(2)
@@ -53,6 +54,7 @@ Page({
             }
           })
         })
+
         this.setData({ goods, sliders, firstRender: false }, () => {
           this.setData({ spinShow: false })
           this.calculateCountDownTime(goods)
@@ -82,9 +84,11 @@ Page({
 
   calculateCountDownTime: function (goods) {
     const countInterval = setInterval(() => {
+      console.log('===== index pages calculateCountDownTime ===')
       goods.forEach((g) => {
         if (!g.isGrabbing) {
-          const deadline = new Date(g.beginTime).getTime()
+          const beginTime = g.beginTime.replace(/-/g, '/')
+          const deadline = Date.parse(beginTime)
           const now = new Date().getTime()
           const tmp = deadline - now
           if (tmp > 0) {
@@ -97,9 +101,13 @@ Page({
           }
         }
       })
-
       const countedTimeGoods = goods.filter(g => !g.isGrabbing)
       if (countedTimeGoods.length) {
+        // const sortedGoods = goods.sort((a, b) => {
+        //   const aTimetamp = a.createTime.replace(/-/g, '/')
+        //   const bTimetamp = b.createTime.replace(/-/g, '/')
+        //   return Date.parse(aTimetamp) - Date.parse(bTimetamp)
+        // })
         this.setData({ goods })
       }
       else {
@@ -112,5 +120,5 @@ Page({
     if (!this.data.firstRender) {
       this.onLoad()
     }
-  }
+  },
 })

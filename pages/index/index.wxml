@@ -14,13 +14,14 @@
       bindtap="bindDetailTap"
       data-id="{{item}}"
     >
-      <view class="tag" wx:if="{{item.isGrabbing}}">
+      <view class="tag">
         <image src="/public/images/首页界面切图/正在开抢猴子.png" class="grabbing-monkey"></image>
-       正在开抢</view>
-      <view class='count-down' wx:else>
-        {{item.hours}}<span class="unit">时</span>
-        {{item.minutes}}<span class="unit">分</span>
-        {{item.seconds}}<span class="unit">秒</span>
+        <block wx:if="{{item.isGrabbing}}">正在开抢</block>
+        <block class='count-down' wx:else>
+          <span class='time'>{{item.hours}}</span><span class="unit">时</span>
+          <span class='time'>{{item.minutes}}</span><span class="unit">分</span>
+          <span class='time'>{{item.seconds}}</span><span class="unit">秒</span>
+        </block>
       </view>
       <view class='item-rows'>
         <block>

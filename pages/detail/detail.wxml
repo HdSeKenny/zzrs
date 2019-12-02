@@ -17,13 +17,16 @@
     <view class="detail box-shadow">
       <p class="brand-name">{{good.name}}</p>
       <i-grid i-class="no-border"><i-grid-item i-class="detail-text">{{good.subtitle}}</i-grid-item></i-grid>
-      <view class="btn-row" wx:if="{{!good.isGrabbing}}">
+      <view class="btn-row" wx:if="{{!good.isGrabbing && !good.willGrab}}">
         <i-button i-class="tag-btn disabled" size="small" disabled>抢购结束</i-button>
       </view>
       <i-grid i-class="no-border" wx:if="{{good.isGrabbing}}">
         <i-button i-class="tag-btn common-bg-color" size="small">正在开抢</i-button>
       </i-grid>
-      <view class="left-time" wx:if="{{good.isGrabbing}}">
+      <i-grid i-class="no-border" wx:if="{{good.willGrab}}">
+        <i-button i-class="tag-btn disabled" size="small" disabled>即将开抢</i-button>
+      </i-grid>
+      <view class="left-time" wx:if="{{good.isGrabbing || good.willGrab}}">
         <p>
           {{good.hours || '00'}}<span class="unit">时</span>
           {{good.minutes || '00'}}<span class="unit">分</span>
@@ -80,11 +83,11 @@
       <i-grid-item i-class='btn-grid'>
         <i-button i-class='common-bg-color' bind:click="handleCheckoutOriginalPrice" size="small" data-id="{{good.id}}">原价购买</i-button>
       </i-grid-item>
-      <i-grid-item wx:if="{{good.isGrabbing}}" i-class='btn-grid'>
+      <i-grid-item wx:if="{{(good.isGrabbing || good.willGrab) && !good.onlookRecordNo}}" i-class='btn-grid'>
         <i-button i-class='common-bg-color' bind:click="handleCheckoutLookerPrice" size="small" data-id="{{good.id}}">{{good.lookAmount}} 元围观</i-button>
       </i-grid-item>
       <i-grid-item wx:if="{{!good.orderno && good.onlookRecordNo}}" i-class='btn-grid'>
-        <i-button i-class='common-bg-color' bind:click="handleCheckoutLookerPrice" size="small" data-id="{{good.id}}">抢购</i-button>
+        <i-button i-class='common-bg-color' bind:click="handleCheckoutGrabbingPrice" size="small" data-id="{{good.id}}">抢购</i-button>
       </i-grid-item>
     </i-grid>
     

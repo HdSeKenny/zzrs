@@ -10,7 +10,12 @@ const request = {
       header,
       success: (res) => {
         // console.log(res.data)
-        resolve(res.data.data)
+        let _data = res.data.data
+        if (!_data) {
+          _data = {}
+        }
+        _data.msg = res.data.msg
+        resolve(_data)
       },
       fail: (err) => {
         reject(err)

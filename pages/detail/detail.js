@@ -41,7 +41,18 @@ Page({
     })
   },
 
+  handleCheckoutGrabbingPrice: function(e) {
+    if (!app.globalData.userInfo) {
+      return Toast.warning('请先登录')
+    }
+    const gId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `../order/order?id=${gId}&isGrabbing=1`
+    })
+  },
+
   findGoodOnlook: function (options, detailGood){
+    console.log('======== findGoodOnlook ========')
     GoodService.findGoodOnlook(options)
       .then(data => {
         const newGood = Object.assign({}, detailGood, data)
@@ -90,15 +101,16 @@ Page({
     const now = new Date().getTime()
     const nextPrice = currentprice - downprice
 
-    good.isGrabbing = now > begin && status !== 2
+    good.isGrabbing = now >= begin
+    good.willGrab = now < begin
     good.nextPrice = nextPrice < minPrice ? minPrice : nextPrice
   
-    if (good.isGrabbing) {
-      const grabbingInterval = setInterval(() => {
+    if (good.isGrabbing && !this.grabbingInterval) {
+      this.grabbingInterval = setInterval(() => {
         const current = new Date().getTime()
         const tmp = lastCalcute + timespan * 60000 - current
         if (tmp < 0) {
-          clearInterval(grabbingInterval)
+          clearInterval(this.grabbingInterval)
           this.fetchData({ skuid, id})
         }
         else {
@@ -114,9 +126,28 @@ Page({
       }, 1000)
     }
     else {
-      this.setData({ good, firstRender: false }, () => {
-        this.setData({spinShow: false})
-      })
+      if (good.willGrab && !this.willGrabInterval) {
+        this.willGrabInterval = setInterval(() => {
+          const beginTime = good.beginTime.replace(/-/g, '/')
+          const deadline = Date.parse(beginTime)
+          const now = new Date().getTime()
+          const tmp = deadline - now
+          if (tmp > 0) {
+            good.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            good.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60))
+            good.seconds = Math.floor((tmp % (1000 * 60)) / 1000)
+            this.setData({ good, firstRender: false }, () => {
+              if (this.data.spinShow) {
+                this.setData({ spinShow: false })
+              }
+            })
+          }
+          else {
+            clearInterval(this.willGrabInterval)
+            this.fetchData({ skuid, id })
+          }
+        }, 1000)
+      }
     }
   },
 
@@ -127,6 +158,7 @@ Page({
   },
 
   fetchData(options) {
+    console.log('======== fetchData goodDatail ========')
     GoodService.getGoodDetail({
       id: options.skuid
     })
@@ -143,6 +175,20 @@ Page({
     wx.navigateTo({
       url: `../swiper-details/swiper-details?skuid=${this.data.good.skuid}`
     })
+  },
+
+  /**
+ * Lifecycle function--Called when page hide
+ */
+  onHide: function () {
+
+  },
+
+  /**
+   * Lifecycle function--Called when page unload
+   */
+  onUnload: function () {
+
   },
 
 })

@@ -1,7 +1,9 @@
 <!--pages/help-center/help-center.wxml-->
 <view class='help'>
-  <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
-  <view class='titles'>
+  <view class='header-wrapper'>
+    <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
+  </view>
+  <view class='content titles'>
     <view class='title-block' wx:for="{{titles}}" wx:key="{{index}}" bindtap="bindAnswerTap" data-id='{{item}}'>
       <p>{{item}}</p>
     </view>

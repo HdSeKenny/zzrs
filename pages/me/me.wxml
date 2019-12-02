@@ -20,36 +20,36 @@
       <view class='menu-icons'>
         <i-row i-class='icon-row'>
           <i-col span="12" i-class="icon-col">
-            <navigator url="/pages/order-history/order-history">
+            <navigator url="/pages/order-history/order-history" hover-class='btn-hover'>
               <image src="/public/images/我的订单.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
           <i-col span="12" i-class="icon-col">
-            <navigator url="/pages/coupon/coupon">
+            <navigator url="/pages/coupon/coupon" hover-class='btn-hover'>
               <image src="/public/images/优惠券.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
         </i-row>
         <i-row i-class='icon-row'>
           <i-col span="12" i-class="icon-col">
-            <navigator url="/pages/address/address">
+            <navigator url="/pages/address/address" hover-class='btn-hover'>
               <image src="/public/images/收货地址.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
           <i-col span="12" i-class="icon-col">
-            <navigator url="/pages/contact/contact">
+            <navigator url="/pages/contact/contact" hover-class='btn-hover'>
               <image src="/public/images/联系客服.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
         </i-row>
         <i-row i-class='icon-row'>
           <i-col span="12" i-class="icon-col">
-            <navigator url="/pages/help-center/help-center">
+            <navigator url="/pages/help-center/help-center" hover-class='btn-hover'>
               <image src="/public/images/帮助中心.png" mode="scaleToFit"></image>
             </navigator>
           </i-col>
           <i-col span="12" i-class="icon-col">
-            <button bindtap="showModal" class="share-firend-btn">
+            <button bindtap="showModal" class="share-firend-btn" hover-class='btn-hover'>
               <image src="/public/images/分享好友.png" mode="scaleToFit"></image>
             </button>
           </i-col>
@@ -64,13 +64,12 @@
       <view class='share-imgs'>
         <i-row>
           <i-col span="5" i-class="share-icon-col">
-            <button open-type='share' class="share-firend-btn">
+            <button open-type='share' class="share-firend-icon">
               <image src="/public/images/微信好友.png"></image>
               <p class="label">微信好友</p>
             </button>
           </i-col>
-          <i-col span="5" i-class="share-icon-col">
-          
+          <i-col span="5" i-class="share-icon-col hide">
             <image src="/public/images/朋友圈.png" class='friends-circle'></image>
             <p class="label">朋友圈</p>
           </i-col>

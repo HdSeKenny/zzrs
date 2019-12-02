@@ -16,18 +16,20 @@ Page({
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({title: '订单支付'})
-    const { id } = options
+    const { id, isGrabbing } = options
     Promise.all([
       GoodService.weChatFindGoodOnlook({ id }),
       UserService.getUserDefaultAddress()
     ]).then((data) => {
+      
       const good = data[0]
       const isLooker = options.isLooker === '1'
-      const { lookAmount, purchaseprice } = good
-      good.displayPrice = isLooker ? lookAmount : purchaseprice
+      const isGrabbing = options.isGrabbing === '1'
+      const { lookAmount, purchaseprice, currentprice } = good
+      good.displayPrice = isLooker ? lookAmount : (isGrabbing ? currentprice : purchaseprice)
       
       const { coupon } = this.data
-      const discountPrice = coupon ? (purchaseprice - coupon.minusamount) : purchaseprice
+      const discountPrice = coupon ? (good.displayPrice - coupon.minusamount) : good.displayPrice
       good.sumPrice = isLooker ? lookAmount : discountPrice
 
       Object.keys(good).forEach(key => {
@@ -43,6 +45,7 @@ Page({
         good,
         address: data[1],
         isLooker,
+        isGrabbing,
         firstRender: false
       }, () => {
         this.setData({spinShow:false})
@@ -52,10 +55,7 @@ Page({
 
   onPayOrder: function () {
     const { address, good, isLooker }= this.data
-    if (!this.data.address) {
-      Toast.warning('请填写收货地址！')
-    }
-    else if (this.data.isLooker) {
+    if (this.data.isLooker) {
       GoodService.onLookGood({ onlookid: good.id, transType: 'JSAPI' })
         .then((res) => {
           this.processPay(res)
@@ -65,6 +65,10 @@ Page({
         })
     }
     else {
+      if (!this.data.address) {
+        return Toast.warning('请填写收货地址！')
+      }
+
       const { id } = this.data.good
       const { phone, address, area, city, province } = this.data.address
       const { userInfo } = app.globalData
@@ -91,32 +95,43 @@ Page({
   },
 
   processPay: function(param) {
-    wx.requestPayment({
-      timeStamp: param.timeStamp,
-      nonceStr: param.nonceStr,
-      package: param.packageValue,
-      signType: param.signType,
-      paySign: param.paySign,
-      success: function (res) {
-        console.log("wx.requestPayment返回信息", res)
-        wx.showModal({
-          title: '支付成功',
-          content: '您将在“微信支付”官方号中收到支付凭证',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-            } else if (res.cancel) {
+    if (param.timeStamp) {
+      wx.requestPayment({
+        timeStamp: param.timeStamp,
+        nonceStr: param.nonceStr,
+        package: param.packageValue,
+        signType: param.signType,
+        paySign: param.paySign,
+        success: (res) => {
+          console.log("wx.requestPayment返回信息", res)
+          wx.showModal({
+            title: '支付成功',
+            content: '您将在“微信支付”官方号中收到支付凭证',
+            showCancel: false,
+            success: (res) => {
+              const { id, skuid } = this.data.good;
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: `../detail/detail?id=${id}&skuid=${skuid}`
+                })
+              } else if (res.cancel) {
+              }
             }
-          }
-        })
-      },
-      fail: function (err) {
-        console.log("支付失败", err)
-      },
-      complete: function () {
-        console.log("支付完成(成功或失败都为完成)")
-      }
-    })
+          })
+        },
+        fail: function (err) {
+          console.log("支付失败", err)
+          Toast.error('支付失败')
+        },
+        complete: function () {
+          console.log("支付完成(成功或失败都为完成)")
+        }
+      })
+    }
+    else if (param.msg) {
+      Toast.warning(param.msg)
+    }
+
   },
   onUserCoupon() {
     wx.navigateTo({

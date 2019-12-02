@@ -27,7 +27,8 @@ Page({
       })
       .then(data => {
         const orders = data.records.map((record) => {
-          const begin = new Date(record.beginTime).getTime()
+          const beginTime = record.beginTime.replace(/-/g, '/')
+          const begin = Date.parse(beginTime)
           const now = new Date().getTime()
           const isGrabbing = now > begin
           record.isStopped = record.goodOnlookStatus === 2

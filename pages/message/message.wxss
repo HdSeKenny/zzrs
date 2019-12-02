@@ -5,6 +5,7 @@
   margin: 10px 0px;
   padding: 10px;
   background-color: #ffffff;
+  overflow: visible;
 }
 
 .message-block .status {
@@ -26,14 +27,13 @@
 }
 
 .message-block .status .date {
-  position: absolute;
-  right: 20px;
+  margin-left: 130px;
   color: #333;
   font-size: 13px;
 }
 
 .message-block .good {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .message-block .left {
@@ -50,12 +50,13 @@
   width: 81%;
   height: 50px;
   margin-left: 1%;
+  overflow: visible;
   display: inline-block;
 }
 
 .message-block .name-row {
   font-size: 15px;
-  height: 30px;
+  max-height: 42px;
 }
 
 .message-block .name-row .order-price {

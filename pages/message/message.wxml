@@ -3,8 +3,10 @@
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
   <view wx:if="{{hasUserInfo}}">
+  <view class='header-wrapper'>
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
-    <view wx:if="{{messages.length}}">
+    </view>
+    <view wx:if="{{messages.length}}" class='content'>
       <view class='message-block' wx:for="{{messages}}" wx:key="{{item.id}}">
         <view class='status'>
           <image src="{{item.orderno ? '/public/images/success.png' : '/public/images/fail.png'}}" class='status-icon' mode="scaleToFit"></image>
@@ -24,7 +26,7 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{!messages.length && !spinShow}}">
+    <view wx:if="{{!messages.length && !spinShow}}" class='content'>
       <image src="/public/images/no_message.png" class='no-msg' mode="aspectFit"></image>
     </view>
   </view>
