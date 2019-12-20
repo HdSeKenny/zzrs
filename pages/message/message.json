@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "i-toast": "../../iview/dist/toast/index",
-    "i-spin": "../../iview/dist/spin/index"
+    "i-spin": "../../iview/dist/spin/index",
+    "nav-bar": "/pages/nav/nav"
   }
 }

@@ -1,6 +1,6 @@
-<!--pages/user-details/user-details.wxml-->
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class='user-details' wx:if="{{hasUserInfo}}">
-  <view class='avartar'>
+  <view class='avartar custom-nav-mg'>
     <span class='label'>头像</span>
     <span class="right"><image src="{{userInfo.avatarUrl}}"></image></span>
   </view>

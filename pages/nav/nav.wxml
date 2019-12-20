@@ -1,0 +1,15 @@
+<view class="custom_nav" style="height:{{navbarHeight}}px;">
+  <view class="custom_nav_box" style="height:{{navbarHeight}}px;">
+    <view class="custom_nav_bar" style="top:{{statusBarHeight}}px; height:{{cusnavH}}px;">
+      <view class="custom_nav_icon"  wx:if="{{!navbarData.has_search}}" style="height:{{navbarBtn.height - 2}}px; top:{{navbarBtn.top}}px; left:{{navbarBtn.right}}px; border-radius: {{navbarBtn.height / 2}}px">
+        <view class="gobank" style="height:{{navbarBtn.height - 10}}px;width:{{navbarBtn.height - 10}}px;" bindtap="_goBack">
+          <image src="{{goBackImg}}" class='nav-icon' mode="aspectFit"></image>
+        </view>
+        <view class="home" style="height:{{navbarBtn.height -10 }}px;width:{{navbarBtn.height - 10}}px;" bindtap="_goHome">
+          <image src="{{goHomeImg}}" class='nav-icon' mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="nav_title" wx:if="{{!navbarData.has_search}}" style="height:{{cusnavH}}px; line-height:{{cusnavH}}px; color: {{navbarData.titleColor}}">{{navbarData.title}}</view>
+    </view>
+  </view>
+</view>

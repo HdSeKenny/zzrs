@@ -8,11 +8,8 @@
 .add-address-page .add-address-input {
   padding-left: 0;
   padding-right: 0;
+  background-color: #f9f9f9;
 }
-
-/* .add-address-page .add-address-input.address {
-  min-height: 100px;
-} */
 
 .add-address-page .add-address-input input,
 .add-address-page .add-address-input textarea {

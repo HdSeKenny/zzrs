@@ -1,31 +1,34 @@
 <view class="home-page">
   <i-spin fix size="large" wx:if="{{spinShow}}" i-class="spinner"></i-spin>
   <swiper indicator-dots="{{indicatorDots}}"
-    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper' bindtap="bindGuideTap">
-    <block wx:for="{{sliders}}" wx:key="{{index}}">
-      <swiper-item><image src="{{item.imgurl}}" class="slide-image"/></swiper-item>
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='swiper' bindtap="bindGuideTap" style="height: {{swiperHeight}}px;">
+    <block wx:for="{{sliders}}" wx:key="index">
+      <swiper-item><image lazy-load="true" src="{{item.imgurl}}" class="slide-image" /></swiper-item>
     </block>
   </swiper>
   <view class='items-wrapper'>
     <view
       class="{{item.classes}}"
       wx:for="{{goods}}"
-      wx:key="{{item.id}}"
+      wx:key="id"
       bindtap="bindDetailTap"
       data-id="{{item}}"
+      style="margin-bottom: {{itemBottomMargin}}px"
     >
       <view class="tag">
-        <image src="/public/images/首页界面切图/正在开抢猴子.png" class="grabbing-monkey"></image>
-        <block wx:if="{{item.isGrabbing}}">正在开抢</block>
+        <image src="/public/images/首页界面切图/正在开抢猴子.png" class="grabbing-monkey" mode="widthFix"></image>
+        <block wx:if="{{item.isGrabbing}}"><p>正在开抢</p></block>
         <block class='count-down' wx:else>
-          <span class='time'>{{item.hours}}</span><span class="unit">时</span>
-          <span class='time'>{{item.minutes}}</span><span class="unit">分</span>
-          <span class='time'>{{item.seconds}}</span><span class="unit">秒</span>
+          <p>
+          <span class='time'>{{item.hours || '0'}}</span><span class="unit">时</span>
+          <span class='time'>{{item.minutes || '00'}}</span><span class="unit">分</span>
+          <span class='time'>{{item.seconds || '00'}}</span><span class="unit">秒</span>
+          </p>
         </block>
       </view>
       <view class='item-rows'>
         <block>
-          <view class='image-row'><image src="{{item.goodimg}}"></image></view>
+          <view class='image-row'><image src="{{item.goodimg}}" mode="widthFix"></image></view>
           <span class='name'>{{item.goodname}}</span>
           <p class='lowest-row'>最低价格:<span class="price">￥{{item.currentprice}}</span></p>
           <p class="looker-count">{{item.lookercount}} 人围观</p>
@@ -33,5 +36,27 @@
       </view>
     </view>
   </view>
+  <view wx:if="{{!spinShow}}">
+    <i-load-more tip="{{loadMore ? '加载更多数据' : (noMoreData ? '已经没有更多' : '')}}" loading="{{loadMore}}" />
+  </view>
 </view>
 
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+    <view class="auth" wx:if="{{canIUse}}">
+      <view class='header'>
+        <image src='/public/images/logo.png'></image>
+      </view>
+
+      <view class='content'>
+        <view>申请获取以下权限:</view>
+        <text> - 获得你的公开信息(昵称，头像等)</text>
+      </view>
+      <button class='bottom' type='primary'
+        open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    </view>
+
+    <view wx:else>请升级微信版本</view>
+  </view>
+</view>

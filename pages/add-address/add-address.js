@@ -3,14 +3,10 @@ const model = require('../choose-address/model/model.js')
 const { Toast } = require('../../utils/util.js')
 const app = getApp()
 
-var show = false;
-var item = {};
+let show = false
+let item = {}
 
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
     address: {
       id: null,
@@ -23,12 +19,13 @@ Page({
       areaString: '',
       province: ''
     },
-    isAddAddress: false
+    
+    isAddAddress: false,
+    navData: {
+      showCapsule: 1,
+    },
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
     const hasOptions = Object.keys(options).length
     wx.setNavigationBarTitle({
@@ -37,7 +34,6 @@ Page({
     
     if (hasOptions) {
       const { id, name, phone, province, city, area, address, defaultflag } = options
-      // const { id, phone, name, district, detail } = options
       this.setData({
         hasOptions: true,
         address: {
@@ -60,18 +56,13 @@ Page({
       })
     }
   },
-
-  //生命周期函数--监听页面初次渲染完成
   onReady: function (e) {
     var that = this;
-    //请求数据
     model.updateAreaData(that, 0, e);
   },
-  //点击选择城市按钮显示picker-view
   translate: function (e) {
     model.animationEvents(this, 0, true, 400);
   },
-  //隐藏picker-view
   hiddenFloatView: function (e) {
     model.animationEvents(this, 200, false, 400);
     item = this.data.item;
@@ -95,6 +86,7 @@ Page({
 
   //滑动事件
   bindChange: function (e) {
+    console.log(e)
     model.updateAreaData(this, 1, e);
     item = this.data.item;
     this.convertAddressData(item);
@@ -157,11 +149,8 @@ Page({
     UserService.addUserContact(newAddr).then((data) => {
       prevPage.setData({ addresses: prevAdresses })
       wx.navigateBack({ delta: 1 }) 
-    }).catch((err) => {
-      console.log(err)
-    })
+    }).catch((err) => {})
   },
-
   checkboxChange() {
     const newAddr = this.data.address
     const isDefault = newAddr.defaultflag === '1' || newAddr.defaultflag === 1

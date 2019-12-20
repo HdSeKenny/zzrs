@@ -3,20 +3,15 @@ const UserService = require('../../services/user')
 const app = getApp()
 
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
     isFromOrder: false,
     hasUserInfo: true,
     firstRender: true,
-    addresses: []
+    addresses: [],
+    navData: {
+      showCapsule: 1,
+    },
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '收货地址'
@@ -53,52 +48,13 @@ Page({
       this.setData(dataOptions)
     })
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
   onShow: function () {
     if (!this.data.firstRender) {
       this.onLoad()
     }
   },
-
-  onReady: function () {
-
-  },
-  /**
-   * Lifecycle function--Called when page hide
-   */
   onHide: function () {
     Toast.hide()
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
   },
 
   bindAddAddressTap: function(e) {

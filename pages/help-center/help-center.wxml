@@ -1,10 +1,10 @@
-<!--pages/help-center/help-center.wxml-->
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class='help'>
   <view class='header-wrapper'>
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
   </view>
   <view class='content titles'>
-    <view class='title-block' wx:for="{{titles}}" wx:key="{{index}}" bindtap="bindAnswerTap" data-id='{{item}}'>
+    <view class='title-block' wx:for="{{titles}}" wx:key="index" bindtap="bindAnswerTap" data-id='{{item}}'>
       <p>{{item}}</p>
     </view>
   </view>

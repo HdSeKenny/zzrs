@@ -32,6 +32,14 @@ function onLookGood(data) {
   return request.post('/wechat/onlook/onlookGoodOrder', data)
 }
 
+function payAgain(data) {
+  return request.post('/wechat/onlook/payAgain', data)
+}
+
+function findOrderDetail(data) {
+  return request.post('/wechat/order/findOrderDetail', data)
+}
+
 module.exports = {
   getGoodsList,
   getGoodDetail,
@@ -40,5 +48,7 @@ module.exports = {
   weChatFindGoodOnlook,
   buyGood,
   getMyCoupon,
-  onLookGood
+  onLookGood,
+  payAgain,
+  findOrderDetail
 }

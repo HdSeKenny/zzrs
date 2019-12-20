@@ -3,22 +3,20 @@ const UserService = require('../../services/user')
 const app = getApp()
 
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
     hasUserInfo: true,
     firstRender: true,
     orders: [],
-    spinShow: true
+    spinShow: true,
+
+    navData: {
+      showCapsule: 1,
+      title: '我的订单',
+      titleColor: '#fff'
+    },
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '我的订单' })
     if (!app.globalData.userInfo) {
       return this.setData({
         hasUserInfo: false,
@@ -33,70 +31,17 @@ Page({
     }
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-    if (!this.data.firstRender) {
-      this.onLoad()
-    }
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-    Toast.hide()
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
-  },
-
   fetchData: function () {
     UserService.getUserOrder({
       pageSize: 20,
       pageNum:1
     }).then((res) => {
-
       const orders = (res.records || []).map((record) => {
         let statusText = ''
         if (record.orderstatus === 1) {
           statusText = '已支付'
         } else if (record.orderstatus === 0) {
           statusText = '未支付'
-          holder.status.setBackgroundResource(R.drawable.corner_shape_gray);
         } else if (record.orderstatus === 2) {
           statusText = '已发货'
         } else if (record.orderstatus === 3) {
@@ -112,5 +57,28 @@ Page({
     }).catch((err) => {
       console.log(err)
     })
-  }
+  },
+  bindOrderDetail: function (e) {
+    const item = e.currentTarget.dataset.id
+    const {
+      id,
+      receiveraddress,
+      receiverarea,
+      receivercity,
+      receivername,
+      receiverprovince,
+      receivertel,
+      orderprice } = item
+    if (item.orderstatus === 0) {
+      wx.navigateTo({
+        url: `../order/order?id=${id}&is_order_pay=1&phone=${receivertel}&address=${receiveraddress}&area=${receiverarea}&city=${receivercity}&province=${receiverprovince}&name=${receivername}&order_price=${orderprice}`
+      })
+    }
+    else {
+      wx.navigateTo({
+        url: `../order-history-detail/order-history-detail?id=${item.id}`
+      })
+    }
+
+  },
 })

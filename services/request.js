@@ -23,8 +23,10 @@ const request = {
     };
     
     if (wx.getStorageSync('token')) {
-      // console.log(wx.getStorageSync('token'))
       options.header.AUTHORIZATION = `${wx.getStorageSync('token')}`
+    }
+    else {
+      console.log('== Application does not have a token ! ==')
     }
 
     wx.request(options);
@@ -37,7 +39,6 @@ const request = {
       data,
       header,
       success: (res) => {
-        console.log(res)
         resolve(res.data.data)
       },
       fail: (err) => {

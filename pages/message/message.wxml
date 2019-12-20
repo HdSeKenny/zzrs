@@ -1,4 +1,4 @@
-<!--pages/message/message.wxml-->
+<!-- <nav-bar navbarData='{{navData}}'></nav-bar> -->
 <view class='container message-page'>
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
@@ -7,7 +7,7 @@
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
     </view>
     <view wx:if="{{messages.length}}" class='content'>
-      <view class='message-block' wx:for="{{messages}}" wx:key="{{item.id}}">
+      <view class='message-block' wx:for="{{messages}}" wx:key="item.id">
         <view class='status'>
           <image src="{{item.orderno ? '/public/images/success.png' : '/public/images/fail.png'}}" class='status-icon' mode="scaleToFit"></image>
           <!-- <p class="status-text-row"> -->

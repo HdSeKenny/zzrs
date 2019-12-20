@@ -8,7 +8,10 @@ Page({
     hasUserInfo: true,
     firstRender: true,
     spinShow: true,
-    isFromOrder: false
+    isFromOrder: false,
+    navData: {
+      showCapsule: 1,
+    },
   },
 
   fetchData: function (options) {
@@ -23,14 +26,9 @@ Page({
         isFromOrder: options.is_order === '1'
       })
     })
-    .catch((err) => {
-      console.log(err)
-    })
+    .catch((err) => {})
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
     wx.setNavigationBarTitle({title: '我的优惠券'})
     if (!app.globalData.userInfo) {

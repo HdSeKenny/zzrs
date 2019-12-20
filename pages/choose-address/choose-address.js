@@ -38,7 +38,7 @@ Page({
     }
     index = val;
 
-    console.log(index + " => " + val);
+    // console.log(index + " => " + val);
 
     //更新数据
     this.setData({
@@ -53,7 +53,7 @@ Page({
     cellId = options.cellId;
     var that = this;
     var date = new Date()
-    console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
+    // console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
 
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
@@ -95,7 +95,6 @@ Page({
   },
   //隐藏弹窗浮层
   hiddenFloatView(e) {
-    console.log(e);
     moveY = 200;
     show = true;
     t = 0;
@@ -115,7 +114,7 @@ Page({
 
 //动画事件
 function animationEvents(that, moveY, show) {
-  console.log("moveY:" + moveY + "\nshow:" + show);
+  // console.log("moveY:" + moveY + "\nshow:" + show);
   that.animation = wx.createAnimation({
     transformOrigin: "50% 50%",
     duration: 400,

@@ -8,7 +8,10 @@ Page({
    */
   data: {
     userInfo: {},
-    hasUserInfo: false
+    hasUserInfo: false,
+    navData: {
+      showCapsule: 1,
+    },
   },
 
   /**
@@ -24,7 +27,6 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        console.log(res)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -42,55 +44,6 @@ Page({
       //   }
       // })
     }
-  },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
   },
 
   logOut: function() {

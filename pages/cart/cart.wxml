@@ -6,8 +6,10 @@
   </view>
   <view wx:if="{{hasUserInfo}}" class='content'>
     <view class='orders' wx:if="{{orders.length}}">
-      <view class='item-block' wx:for="{{orders}}" wx:key="{{item.id}}" bindtap="bindDetailTap" data-id="{{item}}">
+      <view class='item-block' wx:for="{{orders}}" wx:key="item.id" bindtap="bindDetailTap" data-id="{{item}}">
         <view class="tag" wx:if="{{item.status === 0}}">已取消</view>
+        <view class="tag" wx:if="{{item.status === 1}}">未支付</view>
+        <view class="tag" wx:if="{{item.status === 2}}">已失败</view>
         <view class='order-wraper'>
           <view class='left'>
             <image src="{{item.goodimg}}"></image>
@@ -15,7 +17,13 @@
           <view class='right'>
             <view class="block name-row">
               <p class="name">{{item.goodname}}</p>
-              <p class="{{item.statusClasses}}">{{item.statusText}}</p>
+              <p class="{{item.statusClasses}}" wx:if="{{item.statusText}}">
+                {{item.statusText}}</p>
+              <view class='count-down' wx:else>
+                <span class='time'>{{item.hours}}</span><span class="unit">时</span>
+                <span class='time'>{{item.minutes}}</span><span class="unit">分</span>
+                <span class='time'>{{item.seconds}}</span><span class="unit">秒</span>
+              </view>
             </view>
             <p class="block lowest-row">最低价格：<span class="price">￥ {{item.minPrice}}</span>
               <span class="looker-num">围观人数：{{item.lookercount}}</span>

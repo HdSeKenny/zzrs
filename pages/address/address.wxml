@@ -1,13 +1,11 @@
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class="container address-page">
   <i-toast id="toast" />
   <view class='header-wrapper'>
   <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
   </view>
   <view class='content address-wrapper'>
-    <view class='address-block' wx:for="{{addresses}}" wx:key="{{index}}">
-    <!-- <view class='left' bindtap="bindBackToOrderTap" data-item="{{item}}">
-      <p class="tag-name">{{item.tagName}}</p>
-    </view> -->
+    <view class='address-block' wx:for="{{addresses}}" wx:key="index">
       <view class='middle' bindtap="bindBackToOrderTap" data-item="{{item}}">
         <p class='name'>{{item.name}}
           <span class="phone">{{item.phone}}</span>

@@ -18,7 +18,8 @@
 }
 
 .cart .name-row {
-  height: 42px;
+  height: 45px;
+  max-height: 50px;
 }
 
 .cart .name-row p {
@@ -28,7 +29,7 @@
 .cart .name-row .name {
   font-size: 13px;
   font-weight: bold;
-  width: 70%;
+  width: 66%;
   float: left;
 }
 
@@ -58,8 +59,8 @@
 }
 
 .cart .item-block {
-  padding: 10px;
-  margin-bottom: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
   font-size: 14px;
   background: #ffffff;
 }
@@ -67,4 +68,17 @@
 .cart .looker-num {
   float: right;
 }
-    
+
+.cart .count-down {
+  text-align: right;
+}
+
+.cart .time {
+  font-size: 14px;
+  font-weight: 600;
+}
+.cart .unit {
+  font-size: 10px;
+  font-weight: 400;
+  margin-right: 2px;
+}

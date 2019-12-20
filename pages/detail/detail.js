@@ -1,6 +1,11 @@
 const { Toast, keepDecimalSpaces } = require('../../utils/util.js')
 const GoodService = require('../../services/good')
 const app = getApp()
+const screen = {
+  width: app.globalData.systeminfo.screenWidth
+}
+
+let detailInterval = null
 
 Page({
   data: {
@@ -11,16 +16,20 @@ Page({
     interval: 3000,
     duration: 1000,
     firstRender: true,
-    spinShow: true
-  },
-  methods: {
-    keepPriceDecimal(value, num) {
-      return keepDecimalSpaces(value, num)
-    }
+    spinShow: true,
+
+    navData: {
+      showCapsule: 1,
+    },
+
+    swiperHeight: app.globalData.swiperHeight,
+    bodyHeightPrecent: app.globalData.bodyHeightPrecent
   },
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '详细' })
     if (options && Object.keys(options).length) {
+      if (this.data.firstRender) {
+        detailInterval = null
+      }
       this.fetchData(options)
     }
   },
@@ -40,6 +49,15 @@ Page({
       url: `../order/order?id=${gId}&isLooker=1`
     })
   },
+  handleCheckoutLookerPriceAgain: function(e) {
+    if (!app.globalData.userInfo) {
+      return Toast.warning('请先登录')
+    }
+    const item = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `../order/order?id=${item.id}&isLooker=1&isPayLookAgain=1&lookid=${item.lookid || -1}`
+    })
+  },
 
   handleCheckoutGrabbingPrice: function(e) {
     if (!app.globalData.userInfo) {
@@ -52,26 +70,28 @@ Page({
   },
 
   findGoodOnlook: function (options, detailGood){
-    console.log('======== findGoodOnlook ========')
+
     GoodService.findGoodOnlook(options)
       .then(data => {
         const newGood = Object.assign({}, detailGood, data)
-        const deadline = new Date(newGood.beginTime).getTime()
-        const now = new Date().getTime();
-        const tmp = deadline - now;
         newGood.swiperImgs = detailGood.imagePath.split(',')
+        
+        const { status, lookStatus, orderno, onlookRecordNo } = newGood
+        // const showOrginalBuyBtn_1 = status === 1 && lookStatus === -1 && !orderno
+        // const showOrginalBuyBtn_2 = status === 1 && lookStatus === 1 && !orderno
+        
+        newGood.showOrginalBuyBtn = (!orderno && ![0, 2].includes(lookStatus)) || (status !== 1 && !orderno)
 
-        // 如果状态不为1，中间显示抢购结束，如果getOrderno不为空，底部中间显示已购买，否则显示直接购买按钮
-        // newGood.isGrabbing = newGood.status !== 2 && tmp <= 0
+        const showLookerBuyBtn_1 = lookStatus === -1 && status === 1 && !onlookRecordNo
+        const showLookerBuyBtn_2 = ![-1, 0, 1, 2].includes(lookStatus) && status === 1 && !onlookRecordNo
+        newGood.showLookerBuyBtn = showLookerBuyBtn_1 || showLookerBuyBtn_2
+        
+        newGood.showGrabBuyBtn = status === 1 && onlookRecordNo
 
-        // Object.keys(newGood).forEach((goodKey) => {
-        //   let propertyValue = newGood[goodKey]
-        //   // const isPrice = goodKey.includes('price') || goodKey.includes('Price')
-        //   if (goodKey.includes('price') || goodKey.includes('Price')) {
-        //     const a = propertyValue
-        //     propertyValue = a.toFixed(2)
-        //   }
-        // });
+        newGood.showAlreadyBuyBtn = lookStatus !== -1 && orderno
+        newGood.showAlreayCancelBtn = status === 1 && lookStatus === 2
+        newGood.showOverTimeNoPay = status === 1 && lookStatus === 0 && !onlookRecordNo
+        newGood.showToFinish = status === 1 && lookStatus === 1
 
         Object.keys(newGood).forEach(key => {
           const isTime = key.includes('Time') || key.includes('time')
@@ -91,7 +111,7 @@ Page({
   },
 
   calculateCountDownTime: function (good) {
-    const { beginTime, lastCalcPriceTime, timespan, skuid, id, currentprice, downprice, minPrice, status } = good
+    const { beginTime, lastCalcPriceTime, timespan, skuid, id, currentprice, downprice, minPrice, status, lookStatus } = good
     const _beginTime = beginTime.replace(/-/g, '/')
     const begin = Date.parse(_beginTime)
 
@@ -101,33 +121,30 @@ Page({
     const now = new Date().getTime()
     const nextPrice = currentprice - downprice
 
-    good.isGrabbing = now >= begin
+    good.isGrabbing = now >= begin && status !== 2
     good.willGrab = now < begin
     good.nextPrice = nextPrice < minPrice ? minPrice : nextPrice
   
-    if (good.isGrabbing && !this.grabbingInterval) {
-      this.grabbingInterval = setInterval(() => {
+    if (good.isGrabbing && !detailInterval) {
+      detailInterval = setInterval(() => {
         const current = new Date().getTime()
         const tmp = lastCalcute + timespan * 60000 - current
         if (tmp < 0) {
-          clearInterval(this.grabbingInterval)
-          this.fetchData({ skuid, id})
+          detailInterval = clearInterval(detailInterval)
+          // console.log('下轮价格开启')
+          this.fetchData({ skuid, id, lookStatus })
         }
         else {
           good.hours = Math.floor((tmp % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
           good.minutes = Math.floor((tmp % (1000 * 60 * 60)) / (1000 * 60))
           good.seconds = Math.floor((tmp % (1000 * 60)) / 1000)
-          this.setData({ good, firstRender: false }, () => {
-            if (this.data.spinShow) {
-              this.setData({spinShow: false})
-            }
-          })
+          this.setData({ good, firstRender: false, spinShow: false })
         }
       }, 1000)
     }
     else {
-      if (good.willGrab && !this.willGrabInterval) {
-        this.willGrabInterval = setInterval(() => {
+      if (good.willGrab && !detailInterval) {
+        detailInterval = setInterval(() => {
           const beginTime = good.beginTime.replace(/-/g, '/')
           const deadline = Date.parse(beginTime)
           const now = new Date().getTime()
@@ -143,10 +160,18 @@ Page({
             })
           }
           else {
-            clearInterval(this.willGrabInterval)
-            this.fetchData({ skuid, id })
+            detailInterval = clearInterval(detailInterval)
+            this.fetchData({ skuid, id, lookStatus })
           }
         }, 1000)
+      }
+      else {
+        // console.log('抢购结束')
+        this.setData({ good, firstRender: false }, () => {
+          if (this.data.spinShow) {
+            this.setData({ spinShow: false })
+          }
+        })
       }
     }
   },
@@ -158,16 +183,15 @@ Page({
   },
 
   fetchData(options) {
-    console.log('======== fetchData goodDatail ========')
-    GoodService.getGoodDetail({
-      id: options.skuid
-    })
-    .then((data) => {
-      this.findGoodOnlook({ id: options.id }, data)
-    })
-    .catch(err => {
-      Toast.error(err.toString())
-    })
+    GoodService.getGoodDetail({ id: parseInt(options.skuid) })
+      .then((data) => {
+        data.lookStatus = options.lookStatus ? parseInt(options.lookStatus) : -1
+        data.lookid = options.lookid ? parseInt(options.lookid) : null
+        this.findGoodOnlook({ id: parseInt(options.id) }, data)
+      })
+      .catch(err => {
+        Toast.error(err.toString())
+      })
   },
 
   bindDetailTap: function (e) {
@@ -177,18 +201,16 @@ Page({
     })
   },
 
-  /**
- * Lifecycle function--Called when page hide
- */
   onHide: function () {
-
+    if (detailInterval) {
+      detailInterval = clearInterval(detailInterval)
+    }
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
   onUnload: function () {
-
+    if (detailInterval) {
+      detailInterval = clearInterval(detailInterval)
+    }
   },
 
 })

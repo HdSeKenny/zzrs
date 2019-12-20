@@ -1,0 +1,38 @@
+<view class='container order-history-detail'>
+  <nav-bar navbarData='{{navData}}'></nav-bar>
+  <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
+  <view class='header-wrapper'>
+    <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
+  </view>
+  <view class='content'>
+    <view class="status">订单 <span class="price">{{orderDetail.statusText}}</span></view>
+    <view class="address">
+      <view class="img">
+        <image class="icon" src="/public/images/订单详情/地址图标.png"></image>
+      </view>
+      <view class="info">
+        <p class="name">{{orderDetail.receivername}} {{orderDetail.receivertel}}</p>
+        <p class="">{{orderDetail.receiverprovince}}{{orderDetail.receivercity}}{{orderDetail.receiverarea}}{{orderDetail.receiveraddress}}</p>
+      </view>
+    </view>
+    <view class="good">
+      <view class="good-img">
+        <image src="{{orderDetail.productlogo}}" mode="widthFix" class="image"></image>
+      </view>
+      <view class="good-info">
+        <p class="name">{{orderDetail.productname}}</p>
+        <p class="price">¥ {{orderDetail.price}}</p>
+      </view>
+      <view class="good-price">
+        <p>商品原价 <span class="right">¥ {{orderDetail.price}}</span></p>
+        <p>订单总价 <span class="right">¥ {{orderDetail.orderprice}}</span></p>
+        <p class="border-top">实付款 <span class="price right">¥ {{orderDetail.payprice}}</span></p>
+      </view>
+    </view>
+    <view class="order-info">
+      <p class="title">订单信息</p>
+      <p class="good-no">订单编号：<span class="right">{{orderDetail.orderno}}</span></p>
+      <p class="create-time">创建时间：<span class="right">{{orderDetail.createTime}}</span></p>
+    </view>
+  </view>
+</view>

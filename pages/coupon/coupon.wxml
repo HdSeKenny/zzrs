@@ -33,7 +33,7 @@
     getTypeStr: getTypeStr
   }
  </wxs>
-
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class='container'>
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
@@ -41,7 +41,7 @@
   <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
   </view>
   <view class="content coupons-wrapper" wx:if="{{hasUserInfo}}">
-    <view class='coupon-block' wx:for="{{coupons}}" wx:key="{{item.id}}">
+    <view class='coupon-block' wx:for="{{coupons}}" wx:key="id">
       <i-row>
         <i-col span="6" i-class="left">
           <view class="price">¥ {{Util.keppDecimalSpace(item.minusamount, 2)}}</view>

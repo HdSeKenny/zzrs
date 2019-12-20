@@ -1,43 +1,40 @@
-.detail-page {
-  background-color: #FBFCFC;
-}
-
-.good-detail {
-  color: #A2ABCC;
-}
 
 .slide-image {
   width: 100%;
 }
 
 .detail {
+  color: #A2ABCC;
   background-color: #FFFFFF;
-  margin: 30px 70px 15px 15px;
-  padding: 15px 5px 10px;
+  margin: 5% 58px 5% 15px;
+  padding: 20px 10px 20px;
 }
 
 .detail .tag {
   padding:5px 15px;
-  margin:-40px 0 0px -12px;
+  margin:-40px 0 0px -14px;
   color:#FFFFFF;
   border-radius:5px;
-  font-size:13px;
-  z-index:1;
+  font-size:15px;
+  font-weight: 600;
   position:relative;
   float: left;
+  z-index:1;
 }
 
 .detail-text {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   padding: 10px !important;
+  font-weight: 500;
 }
 
 .brand-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   display: block;
+  color: #333;
 }
 
 .brand-img {
@@ -55,11 +52,11 @@
 .detail button {
   width: 95px;
   height: 32px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 32px;
   margin: 10px auto;
   border: none;
-  border-radius:3px;
+  border-radius: 25px;
   box-shadow: unset;
 }
 
@@ -70,40 +67,50 @@
 
 .left-time {
   color: #333;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   text-align: center;
   margin: 10px 0;
 }
 
 .left-time .unit {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
 }
 
 .params {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
-  margin: 20px 0 0 0;
+  margin: 25px 0 0 0;
 }
 
 .params span {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .param-item {
   padding: 2px !important;
+  font-size: 12px;
 }
 
+.checkout {
+  text-align: center;
+}
 .checkout button {
-  width:120px;
   height:40px;
   font-size: 15px;
   line-height:40px;
   margin:6px auto;
   border: none;
-  border-radius:3px;
+  border-radius:20px;
   box-shadow: unset;
+  display: inline-block;
+  padding: 0 25px;
+}
+
+.checkout button.disabled {
+  background: #999999;
+  color: #FFFFFF;
 }
 
 .checkout .i-btn-small.i-btn-circle {
@@ -121,8 +128,8 @@
 .detail-background {
   position:absolute;
   z-index:1;
-  width:90px;
-  right:13px;
-  height:242px;
-  top:175px;
+  width: 91px;
+  right: 0px;
+  height: 250px;
+  top: 220px;
 }

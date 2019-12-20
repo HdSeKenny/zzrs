@@ -1,5 +1,4 @@
-/**index.wxss**/
-page{
+page {
   background-color: rgba(255, 255, 255, 1); 
 }
 

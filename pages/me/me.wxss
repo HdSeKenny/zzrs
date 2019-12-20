@@ -3,17 +3,17 @@
 }
 
 .avatar-bg {
-  height: 45%;
-  text-align:center;
   font-size:15px;
   font-weight: bold;
   color:#ffff;
+  height: 250px;
+  text-align: center;
   background-repeat:no-repeat;
   background-size:100% 100%;
 }
 
 .avatar-wrapper {
-  margin-top: -57%;
+  margin-top: -190px;
 }
 
 .avatar {
@@ -30,28 +30,28 @@
 }
 
 .avatar-background {
-  opacity:0.3;
-  width:50%;
+  width: 50%;
+  height: 140px;
+  left: 25%;
   position:absolute;
-  left:25%;
-  height:25%;
-  z-index:1;
+  opacity: 0.3;
+  z-index: 1;
 }
 
 .empty-box {
-  height:28px;
+  width: 36%;
+  height: 28px;
+  left: 33%;
+  top: 175px;
   position:absolute;
-  width:36%;
-  left:33%;
-  top:27%;
 }
 
 .empty-box-text {
+  left: 36%;
+  top: 180px;
+  font-size:12px;
   color:#212b66;
   position:absolute;
-  left:35.5%;
-  top:28%;
-  font-size:12px;
 }
 
 .avatar-bg .text {
@@ -67,8 +67,8 @@
   position:absolute;
   left:50%;
   width:2px;
-  height:52%;
-  top:46%;
+  height: 309px;
+  top: 260px;
   z-index: 1;
 }
 
@@ -80,11 +80,11 @@
 }
 
 .menu .h-line-1 {
-  top: 62%;
+  top: 361px;
 }
 
 .menu .h-line-2 {
-  top: 82%;
+  top: 464px;
 }
 
 .menu .menu-icons {
@@ -92,7 +92,7 @@
 }
 
 .menu .menu-icons .icon-row {
-  height: 33%;
+  height: 110px;
 }
 
 .menu .menu-icons .icon-col {

@@ -7,6 +7,9 @@
     "i-cell": "../../iview/dist/cell/index",
     "i-tab-bar": "../../iview/dist/tab-bar/index",
     "i-tab-bar-item": "../../iview/dist/tab-bar-item/index",
-    "i-spin": "../../iview/dist/spin/index"
-  }
+    "i-spin": "../../iview/dist/spin/index",
+    "i-load-more": "../../iview/dist/load-more/index",
+    "nav-bar": "/pages/nav/nav"
+  },
+  "enablePullDownRefresh": true
 }

@@ -12,6 +12,7 @@
     "i-grid-label": "../../iview/dist/grid-label/index",
     "i-tag": "../../iview/dist/tag/index",
     "i-toast": "../../iview/dist/toast/index",
-    "i-spin": "../../iview/dist/spin/index"
+    "i-spin": "../../iview/dist/spin/index",
+    "nav-bar": "/pages/nav/nav"
   }
 }

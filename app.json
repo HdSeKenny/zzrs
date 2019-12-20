@@ -15,11 +15,11 @@
     "pages/help-center/help-center",
     "pages/help-answer/help-answer",
     "pages/user-details/user-details",
-    "pages/authorize/authorize",
     "pages/choose-address/choose-address",
     "pages/coupon/coupon",
     "pages/tab-bar/tab-bar",
-    "pages/guide/guide"
+    "pages/guide/guide",
+    "pages/order-history-detail/order-history-detail"
   ],
   "tabBar": {
     "color": "#b7bacd",
@@ -52,10 +52,12 @@
     ]
   },
   "window": {
-    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }

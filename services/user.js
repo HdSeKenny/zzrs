@@ -45,7 +45,7 @@ function findTransMessageByUserId(data) {
 }
 
 function getUserOrder(data) {
-  return request.post('/wechat/order/findMyOrder', data) 
+  return request.post('/wechat/order/findMyOrder', data)
 }
 
 module.exports = {

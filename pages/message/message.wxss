@@ -27,7 +27,7 @@
 }
 
 .message-block .status .date {
-  margin-left: 130px;
+  margin-left: 33%;
   color: #333;
   font-size: 13px;
 }
@@ -38,7 +38,7 @@
 
 .message-block .left {
   width: 18%;
-  float: left;  
+  float: left;
 }
 
 .message-block .left image {

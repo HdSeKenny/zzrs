@@ -1,4 +1,9 @@
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class='container'>
+  <i-spin fix size="large" wx:if="{{spinShow}}" i-class="spinner"></i-spin>
   <import src="../../modules/wxParse/wxParse.wxml"/>
   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+     <!-- <scroll-view class='contents fade_in'>    
+      <image lazy-load="true"  class='list-img' src="http://files-test.bmwgd.com/40On+R3XzRbkLFwV9qhYgRWdJZgwPiOAYUkny+1pmG8="></image>
+    </scroll-view> -->
 </view>

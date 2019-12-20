@@ -1,8 +1,8 @@
-/* pages/address/address.wxss */
 .address-page {
   padding: 0;
   font-size: 14px;
   background-color: #f9f9f9;
+  height: 100%;
 }
 
 .address-block {

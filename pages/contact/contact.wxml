@@ -1,4 +1,4 @@
-<!--pages/contact/contact.wxml-->
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class='contact'>
   <view class='header-wrapper'>
     <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>

@@ -1,21 +1,6 @@
-/* pages/order/order.wxss */
 .order {
-  background: #eee;
-  /* padding: 10px 0; */
   font-size: 14px;
-  /* display: flex;
-  flex-flow: row wrap; */
 }
-
-/* * {
-  flex: 1 100%;
-} */
-
-/* .main { flex: 2 0px; }
-.order-address { order: 1; }
-.order-detail    { order: 2; }
-.options { order: 3; }
-.checkout  { order: 4; } */
 
 .order-address {
   background: #ffffff;
@@ -39,7 +24,6 @@
 
 .order-detail {
   background: #ffffff;
-  /* margin-top: 5px; */
   border-top: 1px solid #f9f9f9;
 }
 
@@ -106,10 +90,11 @@
 }
 
 .checkout {
-  height: 50px;
+  font-size: 16px;
+  height: 60px;
   background: #ffffff;
   position: absolute;
-  padding: 10px 4%;
+  padding: 15px 40px;
   bottom: 0;
   width: 100%;
   text-align: right;
@@ -122,10 +107,10 @@
 }
 
 .checkout .pay-btn {
-  padding:15px;
-  height:50px;
+  padding: 20px;
+  height: 60px;
   box-sizing:border-box;
-  font-size:14px;
+  font-size:16px;
   background:#3eb94e;
   color:white;
   position:absolute;

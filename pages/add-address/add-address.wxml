@@ -1,10 +1,11 @@
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class="container add-address-page">
   <i-toast id="toast" />
   <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
-  <view class="input-wrapper">
+  <view class="content input-wrapper">
     <i-input i-class="add-address-input name" value="{{address.name}}" autofocus type="text" maxlength="50" placeholder="收货人姓名" bind:change="bindNameInput"/>
     <i-input i-class="add-address-input phone" value="{{address.phone}}" type="number" maxlength="13" placeholder="手机号码" bind:change="bindPhoneInput" />
-    <i-input i-class="add-address-input district" value="{{address.areaString}}" type="text" maxlength="50" placeholder="所在地区" bindtap="translate" />
+    <i-input i-class="add-address-input district" value="{{address.areaString}}" type="text" maxlength="50" placeholder="所在地区" bindtap="translate" disabled />
     <i-input i-class="add-address-input address" value="{{address.detail}}" type="textarea" placeholder="请输入详细地址" maxlength="50" bind:change="bindDetailInput" />
 
     <i-cell-group class="defaultflag-group">

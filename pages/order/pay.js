@@ -26,9 +26,9 @@ async function unitedPayRequest (payParams, goodData) {
   var out_trade_no = '';//自定义订单号必填
 
   var unifiedPayment = 'appid=' + appid + '&body=' + body + '&mch_id=' + mch_id + '&nonce_str=' + nonceStr + '&notify_url=' + notify_url + '&openid=' + openid + '&out_trade_no=' + out_trade_no + '&total_fee=' + total_fee + '&trade_type=' + trade_type + '&key=' + key;
-  console.log("unifiedPayment", unifiedPayment);
+  
   var sign = md5.md5(unifiedPayment).toUpperCase();
-  console.log("签名md5", sign);
+  
 
   //封装统一支付xml参数
   var formData = "<xml>";
@@ -43,7 +43,7 @@ async function unitedPayRequest (payParams, goodData) {
   formData += "<trade_type>" + trade_type + "</trade_type>";
   formData += "<sign>" + sign + "</sign>";
   formData += "</xml>";
-  console.log("formData", formData);
+  // console.log("formData", formData);
   //统一支付
   wx.request({
     url: 'https://api.mch.weixin.qq.com/pay/unifiedorder', //别忘了把api.mch.weixin.qq.com域名加入小程序request白名单，这个目前可以加
@@ -51,7 +51,7 @@ async function unitedPayRequest (payParams, goodData) {
     head: 'application/x-www-form-urlencoded',
     data: formData, //设置请求的 header
     success: function (res) {
-      console.log("返回商户", res.data);
+      // console.log("返回商户", res.data);
       var result_code = util.getXMLNodeValue('result_code', res.data.toString("utf-8"));
       var resultCode = result_code.split('[')[2].split(']')[0];
       if (resultCode == 'FAIL') {
@@ -73,11 +73,11 @@ async function unitedPayRequest (payParams, goodData) {
         var timeStamp = util.createTimeStamp();
         var nonceStr = util.randomString();
         var stringSignTemp = "appId=" + appId + "&nonceStr=" + nonceStr + "&package=prepay_id=" + tmp1[0] + "&signType=MD5&timeStamp=" + timeStamp + "&key=" + key;
-        console.log("签名字符串", stringSignTemp);
+        // console.log("签名字符串", stringSignTemp);
         var sign = md5.md5(stringSignTemp).toUpperCase();
-        console.log("签名", sign);
+        // console.log("签名", sign);
         var param = { "timeStamp": timeStamp, "package": 'prepay_id=' + tmp1[0], "paySign": sign, "signType": "MD5", "nonceStr": nonceStr }
-        console.log("param小程序支付接口参数", param);
+        // console.log("param小程序支付接口参数", param);
         that.processPay(param);
       }
 
@@ -95,7 +95,7 @@ function processPay(param) {
     paySign: param.paySign,
     success: function (res) {
       // success
-      console.log("wx.requestPayment返回信息", res);
+      // console.log("wx.requestPayment返回信息", res);
       wx.showModal({
         title: '支付成功',
         content: '您将在“微信支付”官方号中收到支付凭证',
@@ -108,10 +108,10 @@ function processPay(param) {
       })
     },
     fail: function () {
-      console.log("支付失败");
+      // console.log("支付失败");
     },
     complete: function () {
-      console.log("支付完成(成功或失败都为完成)");
+      // console.log("支付完成(成功或失败都为完成)");
     }
   })
 }

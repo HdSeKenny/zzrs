@@ -1,42 +1,44 @@
+<nav-bar navbarData='{{navData}}'></nav-bar>
 <view class="container order">
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
-  <view class="order-address" wx:if="{{!isLooker}}">
-    <i-cell-group>
-      <span>收货人：
-        <span class="bold">{{address.name}}</span>
-        <span class="phone bold">{{address.phone}}</span>
-      </span>
-      <i-cell is-link url="/pages/address/address?isOrder=true" i-class="address-cell">
-        收货地址：<span class="bold">{{address.province}} {{address.city}} {{address.area}} {{address.address}}</span>
-      </i-cell>
-    </i-cell-group>
-  </view>
-
-  <view class="order-detail">
-    <view class="left">
-      <image class="good-img" src="{{good.goodimg}}" mode="cover"></image>
+  <view class="custom-nav-mg">
+    <view class="order-address" wx:if="{{!isLooker}}">
+      <i-cell-group>
+        <span>收货人：
+          <span class="bold">{{address.name}}</span>
+          <span class="phone bold">{{address.phone}}</span>
+        </span>
+        <i-cell is-link url="/pages/address/address?isOrder=true" i-class="address-cell">
+          收货地址：<span class="bold">{{address.province}} {{address.city}} {{address.area}} {{address.address}}</span>
+        </i-cell>
+      </i-cell-group>
     </view>
-    <view class='right'>
-      <view class='name'><span class="">{{good.goodname}}</span></view>
-      <view>
-        <span class="price">￥{{good.displayPrice}}</span>
-        <span class="number">X 1</span>
+    <view class="order-detail">
+      <view class="left">
+        <image class="good-img" src="{{good.goodimg}}" mode="cover"></image>
+      </view>
+      <view class='right'>
+        <view class='name'><span class="">{{good.goodname}}</span></view>
+        <view>
+          <span class="price">￥{{good.displayPrice}}</span>
+          <span class="number">X 1</span>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="options">
-    <view class='sale' wx:if="{{!isLooker}}">
-      <i-cell i-class="menu-link-cell coupon-label">优惠券:
-        <span class="price" wx:if="{{coupon}}">¥ {{coupon.minusamount}}</span>
-      </i-cell>
-      <i-cell i-class="menu-link-cell coupon" bind:click="onUserCoupon" wx:if="{{!coupon}}">使用优惠券</i-cell>
+    <view class="options">
+      <view class='sale' wx:if="{{!isLooker && coupon}}">
+        <i-cell i-class="menu-link-cell coupon-label">优惠券:
+          <span class="price" wx:if="{{coupon}}">¥ {{coupon.minusamount}}</span>
+        </i-cell>
+        <i-cell i-class="menu-link-cell coupon" bind:click="onUserCoupon" wx:if="{{!coupon}}">使用优惠券</i-cell>
+      </view>
+      <view class='sum'>共1件商品 小计：<span class="price">￥{{good.sumPrice}}</span>
+      </view>
     </view>
-    <view class='sum'>共1件商品 小计：<span class="price">￥{{good.sumPrice}}</span>
-    </view>
-  </view>
-  <view class="checkout">
-    <p class="sum">合计金额： <span class="price">￥{{good.sumPrice}}</span></p>
-    <p class="pay-btn" bindtap="onPayOrder">微信支付</p>
+    <view class="checkout">
+      <p class="sum">合计金额： <span class="price">￥{{good.sumPrice}}</span></p>
+      <p class="pay-btn" bindtap="onPayOrder">微信支付</p>
+    </view>  
   </view>
 </view>

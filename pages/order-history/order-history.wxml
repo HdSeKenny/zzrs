@@ -1,11 +1,12 @@
-<view class='container'>
+<view class='container order-history'>
+  <nav-bar navbarData='{{navData}}'></nav-bar>
   <i-toast id="toast" />
   <i-spin fix size="large" wx:if="{{spinShow}}"></i-spin>
   <view class='header-wrapper'>
   <image src="/public/images/header_background.png" class='header-background' mode="scaleToFit"></image>
   </view>
   <view wx:if="{{hasUserInfo}}" class='content order-history'>
-    <view class='order-block box-shadow' wx:for="{{orders}}" wx:key="{{item.id}}">
+    <view class='order-block' wx:for="{{orders}}" wx:key="item.id" bindtap="bindOrderDetail" data-id="{{item}}">
       <view class='date'>
         <text>{{item.createTime}}</text>
       </view>
@@ -28,7 +29,7 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{!orders.length && !spinShow}}" class='content'>
-    <image src="/public/images/no_message.png" class='no-msg' mode="aspectFit"></image>
+  <view wx:if="{{!orders.length && !spinShow}}" class=''>
+    <image src="/public/images/no_order.png" class='no-msg' mode="aspectFit"></image>
   </view>
 </view>

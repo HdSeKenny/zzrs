@@ -3,6 +3,7 @@
     "i-toast": "../../iview/dist/toast/index",
     "i-spin": "../../iview/dist/spin/index",
     "i-row": "../../iview/dist/row/index",
-    "i-col": "../../iview/dist/col/index"
+    "i-col": "../../iview/dist/col/index",
+    "nav-bar": "/pages/nav/nav"
   }
 }

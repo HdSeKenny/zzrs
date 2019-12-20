@@ -7,6 +7,7 @@
     "i-checkbox-group": "../../iview/dist/checkbox-group/index",
     "i-checkbox": "../../iview/dist/checkbox/index",
     "i-radio-group": "../../iview/dist/radio-group/index",
-    "i-radio": "../../iview/dist/radio/index"
+    "i-radio": "../../iview/dist/radio/index",
+    "nav-bar": "/pages/nav/nav"
   }
 }

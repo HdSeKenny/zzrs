@@ -130,12 +130,12 @@ Page({
         // 转发成功
       },
       fail: function (res) {
-        console.log(res + '失败')
+        // console.log(res + '失败')
         // 转发失败
       },
       complete: function (res) {
         // 不管成功失败都会执行
-        console.log('complete', res)
+        // console.log('complete', res)
       }
     })
   }

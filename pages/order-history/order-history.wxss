@@ -1,12 +1,7 @@
-/* pages/message/message.wxss */
-.order-history {
-  padding: 5px 15px;
-}
-
 .order-block {
   font-size: 15px;
   margin: 10px 0;
-  /* border: 1px solid #eee; */
+  background-color: #ffffff;
 }
 
 .order-block .date {
@@ -14,7 +9,6 @@
   text-align: right;
   font-size: 13px;
   color: #999999;
-  /* border-bottom: 1px solid #eee; */
 }
 
 .order-block .good {

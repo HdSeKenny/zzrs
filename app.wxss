@@ -2,23 +2,21 @@
 @import "/modules/wxParse/wxParse.wxss";
 
 page {
-  height: 100%;
+  /* height: 100%; */
+  background-color: #f9f9f9;
+  z-index: 9999998;
+}
+
+.custom-nav-mg {
+  margin-top: 17%;
 }
 
 .container {
-  height: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  justify-content: space-between;
-  /* padding: 40rpx 0; */
-  box-sizing: border-box;
   background-color: #f9f9f9;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
-.page {
-
-}
 
 .block {
   display: block;
@@ -29,9 +27,9 @@ page {
 }
 
 .price {
-  color: #F2AA72;
-  font-size: 14px;
-  font-weight: bold;
+  color: #F2AA72 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
 }
 
 .lowest-row {
@@ -40,19 +38,21 @@ page {
 }
 
 .header-wrapper {
-  height: 100px;
+  height: 130px;
   z-index: 9999;
   position: fixed;
   background-color: #f9f9f9;
   width: 100%;
 }
+
 .content {
-  margin-top: 105px;
+  margin-top: 135px;
+  padding: 0 10px;
 }
 
 .header-background {
   width: 100%;
-  height: 100px;
+  height: 130px;
   position: fixed;
 }
 
@@ -65,10 +65,6 @@ page {
 
 .box-shadow {
   box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.12);
-}
-
-.item-block {
-  /* box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.12); */
 }
 
 .tag {

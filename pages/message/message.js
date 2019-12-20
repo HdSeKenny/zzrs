@@ -7,7 +7,10 @@ Page({
     hasUserInfo: true,
     firstRender: true,
     messages: [],
-    spinShow: true
+    spinShow: true,
+    navData: {
+      showCapsule: 1,
+    },
   },
 
   onLoad: function (options) {
